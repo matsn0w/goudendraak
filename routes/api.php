@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Resources\NewsItemResource;
+use App\Models\NewsItem;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('/newsitems')->group(function () {
+    Route::get('/', function () {
+        return NewsItemResource::collection(NewsItem::all());
+    });
+
+    Route::get('/{id}', function ($id) {
+        return new NewsItemResource(NewsItem::findOrFail($id));
+    });
 });
