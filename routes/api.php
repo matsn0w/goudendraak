@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsItemController;
 use App\Http\Resources\NewsItemResource;
 use App\Models\NewsItem;
 use Illuminate\Support\Facades\Route;
@@ -15,12 +16,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('/newsitems')->group(function () {
-    Route::get('/', function () {
-        return NewsItemResource::collection(NewsItem::all());
-    });
-
-    Route::get('/{id}', function ($id) {
-        return new NewsItemResource(NewsItem::findOrFail($id));
-    });
-});
+Route::apiResource('newsitems', NewsItemController::class);
