@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\NewsItemResource;
+use App\Models\NewsItem;
 use Illuminate\Http\Request;
 
 class NewsItemController extends Controller
@@ -13,7 +15,7 @@ class NewsItemController extends Controller
      */
     public function index()
     {
-        //
+        return NewsItemResource::collection(NewsItem::all());
     }
 
     /**
@@ -24,7 +26,10 @@ class NewsItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // TODO: validation
+        $item = NewsItem::create($request->all());
+
+        return response()->json($item, 201);
     }
 
     /**
@@ -35,7 +40,7 @@ class NewsItemController extends Controller
      */
     public function show($id)
     {
-        //
+        return new NewsItemResource(NewsItem::findOrFail($id));
     }
 
     /**
@@ -45,9 +50,13 @@ class NewsItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        //
+        // TODO: validation
+        $item = NewsItem::findOrFail($id);
+        $item->update($request->all());
+
+        return response()->json($item, 200);
     }
 
     /**
@@ -56,8 +65,11 @@ class NewsItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        //
+        $item = NewsItem::findOrFail($id);
+        $item->delete();
+
+        return response()->json(null, 204);
     }
 }
