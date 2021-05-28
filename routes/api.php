@@ -1,8 +1,6 @@
 <?php
 
 use App\Http\Controllers\NewsItemController;
-use App\Http\Resources\NewsItemResource;
-use App\Models\NewsItem;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,4 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('newsitems', NewsItemController::class);
+Route::prefix('v1')->group(function() {
+    Route::apiResource('newsitems', NewsItemController::class);
+});
