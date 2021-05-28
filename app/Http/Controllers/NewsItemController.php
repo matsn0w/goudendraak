@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\NewsItemResource;
 use App\Models\NewsItem;
-use Illuminate\Http\Request;
+use App\Http\Requests\NewsItemRequest;
+use App\Http\Resources\NewsItemResource;
 
 class NewsItemController extends Controller
 {
@@ -21,13 +21,16 @@ class NewsItemController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\NewsItemRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewsItemRequest $request)
     {
-        // TODO: validation
-        $item = NewsItem::create($request->all());
+        // validate the request
+        $validated = $request->validated();
+
+        // create the new item
+        $item = NewsItem::create($validated);
 
         return response()->json($item, 201);
     }
@@ -46,14 +49,19 @@ class NewsItemController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\NewsItemRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(NewsItemRequest $request, int $id)
     {
-        // TODO: validation
+        // validate the request
+        $validated = $request->validated();
+
+        // find the item
         $item = NewsItem::findOrFail($id);
+
+        // udpate the item
         $item->update($request->all());
 
         return response()->json($item, 200);
@@ -67,7 +75,10 @@ class NewsItemController extends Controller
      */
     public function destroy(int $id)
     {
+        // find the item
         $item = NewsItem::findOrFail($id);
+
+        // delete the item
         $item->delete();
 
         return response()->json(null, 204);
