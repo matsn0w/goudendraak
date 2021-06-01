@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Models\NewsItem;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsItemRequest;
 use App\Http\Resources\NewsItemResource;
 

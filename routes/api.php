@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\NewsItemController;
+use App\Http\Controllers\Api\NewsItemController;
 use Illuminate\Support\Facades\Route;
 
 /*
