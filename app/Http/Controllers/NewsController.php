@@ -24,18 +24,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('admin.news.create');
     }
 
     /**
@@ -45,29 +34,6 @@ class NewsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(NewsItem $newsItem)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\NewsItem  $newsItem
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, NewsItem $newsItem)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\NewsItem  $newsItem
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(NewsItem $newsItem)
     {
         //
     }

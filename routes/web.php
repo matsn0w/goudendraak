@@ -16,4 +16,6 @@ use App\Http\Controllers\NewsController;
 
 Route::view('/', 'pages.home');
 
-Route::resource('/news', NewsController::class)->except(['show']);
+Route::resource('/news', NewsController::class)->except([
+    'show', 'store', 'update', 'destroy'
+]);
