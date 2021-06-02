@@ -1,0 +1,80 @@
+<template>
+    <form :action="route" method="post" @submit="save">
+        <p>{{ response.message }}</p>
+
+        <div>
+            <label for="title">Titel</label>
+            <input type="text" name="title" id="title" v-model="form.title">
+            <ul v-if="response.errors.title !== undefined">
+                <li v-for="error in response.errors.title">{{ error }}</li>
+            </ul>
+        </div>
+
+        <div>
+            <label for="body">Inhoud</label>
+            <textarea name="body" id="body" cols="30" rows="10" v-model="form.body"></textarea>
+            <ul v-if="response.errors.body !== undefined">
+                <li v-for="error in response.errors.body">{{ error }}</li>
+            </ul>
+        </div>
+
+        <div>
+            <button type="submit">Opslaan</button>
+            <a href="/admin/news">Terug</a>
+        </div>
+    </form>
+</template>
+
+<script>
+export default {
+    name: "NewsEdit",
+    props: [
+        'id'
+    ],
+    data() {
+      return {
+        route: `/api/v1/newsitems/${this.id}`,
+        form: {},
+        response: {
+            message: '',
+            errors: [],
+        },
+      };
+    },
+    mounted() {
+        axios.get(`${this.route}`)
+            .then(res => res.data)
+            .then(res => this.form = res.data);
+    },
+    methods: {
+        save(e) {
+            e.preventDefault();
+
+            // submit form data
+            axios.put(this.route, this.form)
+                .then(res => {
+                    if (res.status == 200) {
+                        // update the form
+                        this.form = res.data.data;
+
+                        // show a success message
+                        this.response.message = 'Item updated successfully!';
+                        this.response.errors = [];                    }
+                })
+                .catch(error => {
+                    if (error.response) {
+                        let data = error.response.data;
+
+                        // add errors to the error bag
+                        this.response.message = data.message;
+                        this.response.errors = data.errors;
+                    } else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.error(error.message);
+                    }
+                });
+        },
+    },
+}
+</script>
