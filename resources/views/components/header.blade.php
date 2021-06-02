@@ -12,7 +12,7 @@
         <nav class="buttons has-addons is-justify-content-center">
             <a href="#" class="button">Menukaart</a>
             <a href="#" class="button">Nieuws</a>
-            <a href="#" class="button">Contact</a>
+            <a href="{{ route('contact') }}" class="button">Contact</a>
         </nav>
     </div>
 
