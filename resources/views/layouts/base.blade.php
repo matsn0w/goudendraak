@@ -24,9 +24,11 @@
                 </div>
 
                 <div class="level-item shrink">
-                    <marquee class="mx-3" behavior="scroll" direction="left">
-                        Welkom bij {{ config('app.name') }}. Klik op deze tekst om de aanbiedingen van deze week te zien!
-                    </marquee>
+                    <a href="#">
+                        <marquee class="mx-3" behavior="scroll" direction="left">
+                            Welkom bij {{ config('app.name') }}. Klik op deze tekst om de aanbiedingen van deze week te zien!
+                        </marquee>
+                    </a>
                 </div>
 
                 <div class="level-item">
