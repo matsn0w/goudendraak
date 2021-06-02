@@ -80,3 +80,9 @@ article {
         }
     }
 }
+
+iframe {
+    border: solid 2px $secondary;
+    width: 100%;
+    height: 600px;
+}

@@ -14,7 +14,8 @@ use App\Http\Controllers\NewsController;
 |
 */
 
-Route::view('/', 'pages.home');
+Route::view('/', 'pages.home')->name('home');
+Route::view('/contact', 'pages.contact')->name('contact');
 
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 
