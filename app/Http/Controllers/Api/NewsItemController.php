@@ -33,7 +33,7 @@ class NewsItemController extends Controller
         // create the new item
         $item = NewsItem::create($validated);
 
-        return response()->json($item, 201);
+        return new NewsItemResource($item);
     }
 
     /**
@@ -62,10 +62,10 @@ class NewsItemController extends Controller
         // find the item
         $item = NewsItem::findOrFail($id);
 
-        // udpate the item
-        $item->update($request->all());
+        // update the item
+        $item->update($validated);
 
-        return response()->json($item, 200);
+        return new NewsItemResource($item);
     }
 
     /**
