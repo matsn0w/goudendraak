@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const webpack = require('webpack');
 
 /*
  |--------------------------------------------------------------------------
@@ -17,3 +18,14 @@ mix.js('resources/js/app.js', 'public/dist/js')
         version: 3
     })
     .copyDirectory('resources/img', 'public/dist/img');
+
+// remove esm-builder warning
+// see: https://stackoverflow.com/questions/66189561/you-are-running-the-esm-bundler-build-of-vue-it-is-recommended-to-configure-you
+mix.webpackConfig({
+    plugins: [
+        new webpack.DefinePlugin({
+            __VUE_OPTIONS_API__: true,
+            __VUE_PROD_DEVTOOLS__: false,
+        }),
+    ],
+});

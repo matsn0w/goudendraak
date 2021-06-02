@@ -1,10 +1,17 @@
 require('./bootstrap');
 
 import { createApp } from 'vue';
-// import ExampleComponent from './components/ExampleComponent.vue';
+
+import News from './components/News.vue';
+import NewsIndex from './components/admin/NewsIndex.vue';
+import NewsCreate from './components/admin/NewsCreate.vue';
+import NewsEdit from './components/admin/NewsEdit.vue';
 
 createApp({
     components: {
-        // ExampleComponent,
+        News,
+        NewsIndex,
+        NewsCreate,
+        NewsEdit,
     }
 }).mount('#app');
