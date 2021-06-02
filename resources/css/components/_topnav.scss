@@ -1,0 +1,19 @@
+.topnav {
+    min-height: 50px;
+    background: $secondary;
+    padding: 0 .2em 10px 0;
+
+    .shrink {
+        flex-shrink: 1;
+    }
+
+    img {
+        height: 50px;
+    }
+
+    span {
+        font-family: $family-secondary;
+        margin: 0 .5em;
+        @extend .is-size-3;
+    }
+}
