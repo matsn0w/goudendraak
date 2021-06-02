@@ -1,4 +1,13 @@
 {
     "/dist/js/app.js": "/dist/js/app.js",
-    "/dist/css/app.css": "/dist/css/app.css"
+    "/dist/css/app.css": "/dist/css/app.css",
+    "/dist/fonts/chinese.msyh.ttf": "/dist/fonts/chinese.msyh.ttf",
+    "/dist/fonts/chinesetakeaway-webfont.woff": "/dist/fonts/chinesetakeaway-webfont.woff",
+    "/dist/fonts/chinesetakeaway-webfont.woff2": "/dist/fonts/chinesetakeaway-webfont.woff2",
+    "/dist/fonts/CHINESETAKEAWAY.ttf": "/dist/fonts/CHINESETAKEAWAY.ttf",
+    "/dist/img/dragon-small-flipped.png": "/dist/img/dragon-small-flipped.png",
+    "/dist/img/dragon-small.png": "/dist/img/dragon-small.png",
+    "/dist/img/border.svg": "/dist/img/border.svg",
+    "/dist/img/border.svg.bak": "/dist/img/border.svg.bak",
+    "/dist/img/border.png": "/dist/img/border.png"
 }
