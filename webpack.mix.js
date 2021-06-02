@@ -17,7 +17,8 @@ mix.js('resources/js/app.js', 'public/dist/js')
     .vue({
         version: 3
     })
-    .copyDirectory('resources/img', 'public/dist/img');
+    .copyDirectory('resources/img', 'public/dist/img')
+    .copyDirectory('resources/fonts', 'public/dist/fonts');
 
 // remove esm-builder warning
 // see: https://stackoverflow.com/questions/66189561/you-are-running-the-esm-bundler-build-of-vue-it-is-recommended-to-configure-you
