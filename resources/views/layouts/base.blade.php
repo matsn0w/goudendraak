@@ -39,7 +39,11 @@
             </nav>
 
             <div id="app" class="outside-border">
+                <x-header />
+
                 @yield('content')
+
+                <x-footer />
             </div>
         </div>
     </section>
