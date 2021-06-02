@@ -1,0 +1,18 @@
+// Colors
+$primary: #FFFF00;
+$secondary: #FF0000;
+$link: $primary;
+$text: $primary;
+$body-background-color: #8B0000;
+
+// Fonts
+$family-primary: 'Times New Roman', serif;
+$family-secondary: 'chinese_takeawayregular', serif;
+
+@font-face {
+    font-family: 'chinese_takeawayregular';
+    src: url('/dist/fonts/chinesetakeaway-webfont.woff2') format('woff2'),
+         url('/dist/fonts/chinesetakeaway-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

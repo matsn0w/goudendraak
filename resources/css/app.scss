@@ -1,2 +1,14 @@
 @import 'vars';
 @import 'bulma/bulma';
+
+#app {
+    background-color: $secondary;
+    height: 80vh;
+    box-shadow: 0px 0px 0px 10px $secondary;
+
+    border-image: url('/dist/img/border.png');
+    border-image-slice: 110 fill;
+    border-image-width: 100px;
+    border-image-outset: 0;
+    border-image-repeat: repeat;
+}
