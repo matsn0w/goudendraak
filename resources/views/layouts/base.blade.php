@@ -14,8 +14,10 @@
     @stack('scripts')
 </head>
 <body>
-    <div id="app">
-        @yield('content')
-    </div>
+    <section class="section">
+        <div id="app" class="container">
+            @yield('content')
+        </div>
+    </section>
 </body>
 </html>
