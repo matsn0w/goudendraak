@@ -18,6 +18,16 @@ class NewsController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin()
+    {
+        return view('admin.news.index');
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -33,8 +43,12 @@ class NewsController extends Controller
      * @param  \App\Models\NewsItem  $newsItem
      * @return \Illuminate\Http\Response
      */
-    public function edit(NewsItem $newsItem)
+    public function edit(int $id)
     {
-        //
+        $item = NewsItem::findOrFail($id);
+
+        return view('admin.news.edit', [
+            'ítem' => $item
+        ]);
     }
 }

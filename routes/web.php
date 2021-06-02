@@ -16,6 +16,10 @@ use App\Http\Controllers\NewsController;
 
 Route::view('/', 'pages.home');
 
-Route::resource('/news', NewsController::class)->except([
-    'show', 'store', 'update', 'destroy'
-]);
+Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+
+Route::name('admin.')->prefix('/admin')->group(function() {
+    Route::get('/news', [NewsController::class, 'admin'])->name('news.index');
+    Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
+    Route::get('/news/{news}/edit', [NewsController::class, 'edit'])->name('news.edit');
+});

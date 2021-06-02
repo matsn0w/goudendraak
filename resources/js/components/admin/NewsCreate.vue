@@ -5,7 +5,7 @@
         <div>
             <label for="title">Titel</label>
             <input type="text" name="title" id="title" v-model="form.title">
-            <ul>
+            <ul v-if="response.errors.title !== undefined">
                 <li v-for="error in response.errors.title">{{ error }}</li>
             </ul>
         </div>
@@ -13,13 +13,14 @@
         <div>
             <label for="body">Inhoud</label>
             <textarea name="body" id="body" cols="30" rows="10" v-model="form.body"></textarea>
-            <ul>
+            <ul v-if="response.errors.body !== undefined">
                 <li v-for="error in response.errors.body">{{ error }}</li>
             </ul>
         </div>
 
         <div>
             <button type="submit">Opslaan</button>
+            <a href="/admin/news">Terug</a>
         </div>
     </form>
 </template>
@@ -30,10 +31,7 @@ export default {
     data() {
       return {
         route: '/api/v1/newsitems',
-        form: {
-            title: null,
-            body: null,
-        },
+        form: {},
         response: {
             message: '',
             errors: [],
@@ -44,12 +42,6 @@ export default {
         save(e) {
             e.preventDefault();
 
-            // reset errors
-            this.errors = [];
-
-            // reset success
-            this.success = '';
-
             // submit form data
             axios.post(this.route, this.form)
                 .then(res => {
@@ -59,6 +51,7 @@ export default {
 
                         // show a success message
                         this.response.message = 'News item created successfully!';
+                        this.response.errors = [];
                     }
                 })
                 .catch(error => {
