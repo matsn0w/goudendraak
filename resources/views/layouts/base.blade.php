@@ -7,6 +7,8 @@
 
     <title>{{ config('app.name') }}</title>
 
+    <link rel="shortcut icon" href="{{ asset('dist/img/dragon-small.png') }}" type="image/png">
+
     <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}">
     @stack('styles')
 
