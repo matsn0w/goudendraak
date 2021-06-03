@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -14,8 +17,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()
-            ->count(5)
-            ->create();
+        $cashier = Role::find(3);
+
+        for ($code = 1; $code <= 5; $code++) {
+            User::create([
+                'code' => $code,
+                'password' => Hash::make('geheim'),
+                'remember_token' => Str::random(10),
+            ])->roles()->save($cashier); // cashier
+        }
     }
 }
