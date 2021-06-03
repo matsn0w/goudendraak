@@ -1,8 +1,16 @@
 <template>
-    <div v-for="item in items" :key="item.id">
+    <div class="news-item content" v-for="(item, index) in items" :key="item.id">
         <h2>{{ item.title }}</h2>
-        <p>{{ item.date }}</p>
-        <p>{{ item.body }}</p>
+        <p>
+            <small>{{ item.date }}</small><br>
+            {{ item.body }}
+        </p>
+
+        <hr v-if="index != Object.keys(items).length - 1">
+    </div>
+
+    <div v-if="items == []">
+        <h2>Er is geen nieuws!</h2>
     </div>
 </template>
 
