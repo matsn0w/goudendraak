@@ -24,7 +24,7 @@ Route::name('auth.')->prefix('/auth')->group(function() {
     Route::post('/login', [AuthController::class, 'login'])->name('login');
 });
 
-Route::name('admin.')->prefix('/admin')->middleware('auth')->group(function() {
+Route::name('admin.')->prefix('/admin')->middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/', function () {
         return 'admin';
     })->name('index');
