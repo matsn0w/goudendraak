@@ -1,5 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
-    <News></News>
+    <article>
+        <News></News>
+    </article>
 @endsection

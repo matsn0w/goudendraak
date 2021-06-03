@@ -59,7 +59,9 @@ article {
     color: $black;
     border: solid 1px $black;
     text-align: center;
-    @extend .has-text-weight-bold;
+    padding: 1em;
+    @extend .has-text-weight-bold,
+            .is-size-5;
 
     table {
         margin: 0 auto;
@@ -77,6 +79,17 @@ article {
             &:nth-child(even) {
                 text-align: left;
             }
+        }
+    }
+
+    .news-item {
+        @extend .mb-3;
+
+        hr {
+            height: 1px;
+            background-color: $black;
+            width: 25%;
+            margin: 0 auto;
         }
     }
 }
