@@ -9,7 +9,7 @@
         <hr v-if="index != Object.keys(items).length - 1">
     </div>
 
-    <div v-if="items == []">
+    <div class="content" v-if="items.length === 0">
         <h2>Er is geen nieuws!</h2>
     </div>
 </template>
