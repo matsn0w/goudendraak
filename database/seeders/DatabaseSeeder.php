@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Database\Seeders\NewsItemSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,6 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             NewsItemSeeder::class,
+            RoleSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }
