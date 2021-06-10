@@ -63,6 +63,22 @@ return [
             ]) : [],
         ],
 
+        'mysql2' => [
+            'driver' => env('DB_CONNECTION_LEGACY'),
+            'host' => env('DB_HOST_LEGACY', '127.0.0.1'),
+            'port' => env('DB_PORT_LEGACY', '3306'),
+            'database' => env('DB_DATABASE_LEGACY', 'forge'),
+            'username' => env('DB_USERNAME_LEGACY', 'forge'),
+            'password' => env('DB_PASSWORD_LEGACY', ''),
+            'unix_socket' => env('DB_SOCKET_LEGACY', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
