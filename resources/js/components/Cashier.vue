@@ -1,6 +1,6 @@
 <template>
     <div class="columns">
-        <div class="column">
+        <div class="column left">
             <div class="block component">
                 <div class="content" v-for="category in categories" :key="category.id">
                     <h3 class="has-text-centered">{{ category.name }}</h3>
@@ -22,8 +22,8 @@
         </div>
 
         <div class="column">
-            <div class="block component">
-                <!-- {{-- order --}} -->
+            <div class="block component content">
+                <h3 class="has-text-centered">Bestelling</h3>
             </div>
 
             <div class="block component">

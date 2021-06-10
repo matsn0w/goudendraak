@@ -40,3 +40,7 @@ body {
 .is-block {
     display: block;
 }
+
+.left {
+    border-right: solid 2px $primary;
+}
