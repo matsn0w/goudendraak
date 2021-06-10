@@ -13,20 +13,23 @@ class CreateMenuItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('menu_category', function(Blueprint $table) {
+        Schema::create('menu_categories', function(Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->timestamps();
         });
 
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('number');
-            $table->foreignId('category_id')->constrained('menu_category');
+            $table->integer('number')->nullable();
+            $table->char('number_addition', 3)->nullable();
+            $table->foreignId('category_id')->nullable()->constrained('menu_categories');
             $table->double('price');
-            $table->mediumText('description');
+            $table->mediumText('description')->nullable();
             $table->timestamps();
+
+            $table->unique(['number', 'number_addition']);
         });
     }
 
@@ -37,7 +40,7 @@ class CreateMenuItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menu_category');
+        Schema::dropIfExists('menu_categories');
         Schema::dropIfExists('menu_items');
     }
 }
