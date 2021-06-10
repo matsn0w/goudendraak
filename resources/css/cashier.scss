@@ -1,0 +1,35 @@
+// Colors
+$primary: #0066FF;
+$link: $primary;
+$link-hover: $primary;
+$label-color: $primary;
+
+// Bulma
+@import 'bulma/bulma';
+
+body {
+    padding: 1rem;
+}
+
+.logo {
+    height: 80px;
+}
+
+.header {
+    border-bottom: solid 2px $primary;
+}
+
+.button {
+    background-color: rgb(222, 235, 247);
+    font-weight: bold;
+    font-size: 18px;
+    width: 180px;
+    border: 1px solid $primary;
+    border-radius: 10px;
+    color: $primary;
+}
+
+.component {
+    border: solid 1px $primary;
+    border-radius: 3px;
+}
