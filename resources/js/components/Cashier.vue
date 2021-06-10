@@ -12,7 +12,7 @@
                                 <td>{{ item.name }} <small><em>{{ item.description }}</em></small></td>
                                 <td>{{ euro(item.price) }}</td>
                                 <td>
-                                    <button class="is-pulled-right" type="button">Toevoegen</button>
+                                    <button class="is-pulled-right" type="button" @click="addItem(item)">Toevoegen</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -24,6 +24,19 @@
         <div class="column">
             <div class="block component content">
                 <h3 class="has-text-centered">Bestelling</h3>
+
+                <table class="table is-fullwidth is-narrow">
+                    <tbody>
+                        <tr v-for="(item, index) in orderItems" :key="item.id">
+                            <td>{{ index+1 }}.</td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ euro(item.amount * item.price) }}</td>
+                            <td>
+                                <input class="is-pulled-right" type="number" min="0" v-model.number="item.amount" @change="updateItem(item)">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <div class="block component">
@@ -32,7 +45,7 @@
                     <p>{{ euro(total) }}</p>
                     <div>
                         <button class="is-block mb-1" type="button">Afrekenen</button>
-                        <button class="is-block" type="button">Verwijderen</button>
+                        <button class="is-block" type="button" @click="clearOrder">Verwijderen</button>
                     </div>
                 </div>
             </div>
@@ -47,7 +60,7 @@ export default {
         return {
             categories: [],
             items: [],
-            total: 0,
+            orderItems: [],
         }
     },
     mounted() {
@@ -58,6 +71,11 @@ export default {
         axios.get('/api/v1/menuitems')
             .then(res => res.data)
             .then(res => this.items = res.data);
+    },
+    computed: {
+        total() {
+            return _.sum(this.orderItems.map(item => item.amount * item.price));
+        }
     },
     methods: {
         category_item(category) {
@@ -71,6 +89,34 @@ export default {
             });
 
             return f.format(price);
+        },
+
+        addItem(item) {
+            if (this.orderItems.includes(item)) {
+                let orderItem = this.orderItems.find(oi => oi.id === item.id);
+                orderItem.amount++;
+                return;
+            }
+
+            let orderItem = item;
+            orderItem.amount = 1;
+
+            this.orderItems.push(orderItem);
+        },
+
+        removeItem(item) {
+            this.orderItems = this.orderItems.filter(oi => oi.id !== item.id);
+        },
+
+        updateItem(item) {
+            if (item.amount === 0) {
+                // remove the item from the order
+                this.removeItem(item);
+            }
+        },
+
+        clearOrder() {
+            this.orderItems = [];
         }
     }
 }

@@ -44,3 +44,7 @@ body {
 .left {
     border-right: solid 2px $primary;
 }
+
+td input[type=number] {
+    max-width: 3rem;
+}
