@@ -20,9 +20,11 @@
         <div class="container is-fluid">
             <nav class="topnav section level mb-0 outside-border">
                 <div class="level-item">
-                    <img src="{{ asset('dist/img/dragon-small.png') }}" alt="logo">
-                    <span>{{ config('app.name') }}</span>
-                    <img src="{{ asset('dist/img/dragon-small-flipped.png') }}" alt="logo">
+                    <a href="{{ route('home') }}" class="is-ghost">
+                        <img src="{{ asset('dist/img/dragon-small.png') }}" alt="logo">
+                        <span>{{ config('app.name') }}</span>
+                        <img src="{{ asset('dist/img/dragon-small-flipped.png') }}" alt="logo">
+                    </a>
                 </div>
 
                 <div class="level-item shrink">
@@ -34,9 +36,11 @@
                 </div>
 
                 <div class="level-item">
-                    <img src="{{ asset('dist/img/dragon-small.png') }}" alt="logo">
-                    <span>{{ config('app.name') }}</span>
-                    <img src="{{ asset('dist/img/dragon-small-flipped.png') }}" alt="logo">
+                    <a href="{{ route('home') }}" class="is-ghost">
+                        <img src="{{ asset('dist/img/dragon-small.png') }}" alt="logo">
+                        <span>{{ config('app.name') }}</span>
+                        <img src="{{ asset('dist/img/dragon-small-flipped.png') }}" alt="logo">
+                    </a>
                 </div>
             </nav>
 
