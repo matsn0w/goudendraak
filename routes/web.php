@@ -16,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'pages.home')->name('home');
-Route::view('/contact', 'pages.contact')->name('contact');
+Route::view('/menu', 'pages.menu')->name('menu');
 Route::view('/news', 'pages.news')->name('news');
+Route::view('/contact', 'pages.contact')->name('contact');
 
 Route::name('auth.')->prefix('/auth')->group(function() {
     Route::view('/login', 'auth.login')->name('login');

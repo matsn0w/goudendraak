@@ -10,7 +10,7 @@
         <h1 class="title">{{ config('app.name') }}</h1>
 
         <nav class="buttons has-addons is-justify-content-center">
-            <a href="#" class="button">Menukaart</a>
+            <a href="{{ route('menu') }}" class="button">Menukaart</a>
             <a href="{{ route('news') }}" class="button">Nieuws</a>
             <a href="{{ route('contact') }}" class="button">Contact</a>
         </nav>
