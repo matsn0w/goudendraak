@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\MenuItemController;
 use App\Http\Controllers\Api\NewsItemController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function() {
     Route::apiResource('newsitems', NewsItemController::class);
+    Route::apiResource('menuitems', MenuItemController::class);
 });
