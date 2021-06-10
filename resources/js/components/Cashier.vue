@@ -2,16 +2,17 @@
     <div class="columns">
         <div class="column">
             <div class="block component">
-                <div v-for="category in categories" :key="category.id">
-                    <h3>{{ category.name }}</h3>
-                    <table>
+                <div class="content" v-for="category in categories" :key="category.id">
+                    <h3 class="has-text-centered">{{ category.name }}</h3>
+
+                    <table class="table is-fullwidth is-narrow">
                         <tbody>
-                            <tr v-for="item in category.items" :key="item.id">
-                                <td>{{ item.id }}</td>
-                                <td>{{ item.name }}</td>
-                                <td>€ {{ item.price }}</td>
+                            <tr v-for="item in category_item(category.id)" :key="item.id">
+                                <td>{{ item.number }}{{ item.number_addition }}.</td>
+                                <td>{{ item.name }} <small><em>{{ item.description }}</em></small></td>
+                                <td>{{ euro(item.price) }}</td>
                                 <td>
-                                    <button type="button">Toevoegen</button>
+                                    <button class="is-pulled-right" type="button">Toevoegen</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -38,12 +39,31 @@ export default {
     data() {
         return {
             categories: [],
+            items: [],
         }
     },
     mounted() {
-        axios.get('/api/v1/menuitems')
+        axios.get('/api/v1/menucategories')
             .then(res => res.data)
             .then(res => this.categories = res.data);
+
+        axios.get('/api/v1/menuitems')
+            .then(res => res.data)
+            .then(res => this.items = res.data);
+    },
+    methods: {
+        category_item(category) {
+            return this.items.filter(item => item.category_id === category);
+        },
+
+        euro(price) {
+            let f = new Intl.NumberFormat('nl-NL', {
+                style: 'currency',
+                currency: 'EUR',
+            });
+
+            return f.format(price);
+        }
     }
 }
 </script>

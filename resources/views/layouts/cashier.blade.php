@@ -18,12 +18,10 @@
 <body>
     <x-cashier-navbar />
 
-    <section class="section">
-        <div class="container is-fluid">
-            <div id="app" class="outside-border">
-                @yield('content')
-            </div>
+    <div class="container is-fluid">
+        <div id="app" class="outside-border">
+            @yield('content')
         </div>
-    </section>
+    </div>
 </body>
 </html>

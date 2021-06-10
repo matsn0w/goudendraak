@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\MenuCategoryController;
 use App\Http\Controllers\Api\MenuItemController;
 use App\Http\Controllers\Api\NewsItemController;
 use Illuminate\Support\Facades\Route;
