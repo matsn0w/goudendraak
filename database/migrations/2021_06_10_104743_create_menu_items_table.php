@@ -13,6 +13,12 @@ class CreateMenuItemsTable extends Migration
      */
     public function up()
     {
+        Schema::create('menu_category', function(Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -20,12 +26,6 @@ class CreateMenuItemsTable extends Migration
             $table->foreignId('category_id')->constrained('menu_category');
             $table->double('price');
             $table->mediumText('description');
-            $table->timestamps();
-        });
-
-        Schema::create('menu_category', function(Blueprint $table) {
-            $table->id();
-            $table->string('name');
             $table->timestamps();
         });
     }
