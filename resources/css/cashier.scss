@@ -34,5 +34,9 @@ body {
     max-height: 600px;
     border: solid 1px $primary;
     border-radius: 3px 0 0 3px;
-    overflow-y: scroll;
+    overflow-y: auto;
+}
+
+.is-block {
+    display: block;
 }

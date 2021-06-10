@@ -27,7 +27,14 @@
             </div>
 
             <div class="block component">
-                <!-- {{-- total --}} -->
+                <div class="is-size-5 has-text-weight-bold is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center">
+                    <p>Totaal:</p>
+                    <p>{{ euro(total) }}</p>
+                    <div>
+                        <button class="is-block mb-1" type="button">Afrekenen</button>
+                        <button class="is-block" type="button">Verwijderen</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -40,6 +47,7 @@ export default {
         return {
             categories: [],
             items: [],
+            total: 0,
         }
     },
     mounted() {
