@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\MenuCategory;
+use App\Models\Order;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -76,6 +77,47 @@ class DataMigrationSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
+        }
+
+        $this->command->info('Migrating sales...');
+
+        $sales = DB::connection('mysql2')->table('sales')->get();
+        $orders = [];
+
+        foreach ($sales as $item) {
+            // build a custom array, group items by order date
+            if (! isset($orders[$item->saleDate])) {
+                $orders[$item->saleDate] = [$item];
+            } else {
+                array_push($orders[$item->saleDate], $item);
+            }
+        }
+
+        // loop through all 'orders' (just assembled)
+        foreach ($orders as $order) {
+            // make a proper timestamp
+            $timestamp = Carbon::parse($order[0]->saleDate);
+
+            // insert order
+            DB::connection('mysql')->table('orders')->insert([
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp,
+            ]);
+
+            // find new order id
+            $order_id = Order::whereDate('created_at', $timestamp)
+                ->whereTime('created_at', $timestamp)
+                ->first()
+                ->id;
+
+            foreach ($order as $item) {
+                // insert all order items
+                DB::connection('mysql')->table('order_item')->insert([
+                    'order_id' => $order_id,
+                    'item_id' => $item->itemId,
+                    'amount' => $item->amount,
+                ]);
+            }
         }
     }
 }
