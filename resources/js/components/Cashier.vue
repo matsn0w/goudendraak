@@ -1,6 +1,13 @@
 <template>
-    <div class="notification is-success" v-if="response.message" v-show="response.visible">
-        {{ response.message }}
+    <div class="notification is-success" v-if="response.success" v-show="response.visible">
+        {{ response.success }}
+    </div>
+
+    <div class="notification is-danger content" v-if="response.errors.length">
+        <p>{{ response.error }}</p>
+        <ul v-for="error in response.errors">
+            <li>{{ error }}</li>
+        </ul>
     </div>
 
     <div class="columns">
@@ -69,7 +76,8 @@ export default {
             },
             response: {
                 visible: true,
-                message: '',
+                success: '',
+                error: '',
                 errors: [],
             },
         }
@@ -130,18 +138,22 @@ export default {
             this.order = {
                 'items': [],
             };
+
+            this.response = {
+                visible: true,
+                success: '',
+                error: '',
+                errors: [],
+            };
         },
 
         finishOrder() {
             axios.post('api/v1/orders', this.order)
                 .then(res => {
                     if (res.status == 200) {
-                        // reset the form
-                        this.clearOrder();
-
                         // show a success message for 3 seconds
                         this.response.visible = true;
-                        this.response.message = 'Order created successfully!';
+                        this.response.success = 'Order created successfully!';
                         this.response.errors = [];
                         setTimeout(() => this.response.visible = false, 3000);
                     }
@@ -151,14 +163,23 @@ export default {
                         let data = error.response.data;
 
                         // add errors to the error bag
-                        this.response.message = data.message;
-                        this.response.errors = data.errors;
+                        this.response.error = data.message;
+
+                        for (const [key, value] of Object.entries(data.errors)) {
+                            for (let item of value) {
+                                this.response.errors.push(item);
+                            }
+                        }
+
                     } else if (error.request) {
                         console.log(error.request);
                     } else {
                         console.error(error.message);
                     }
                 });
+
+            // reset the form
+            this.clearOrder();
         }
     }
 }

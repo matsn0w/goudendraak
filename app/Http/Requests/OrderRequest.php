@@ -29,4 +29,11 @@ class OrderRequest extends FormRequest
             'items.*.amount' => ['required', 'integer', 'min:1'],
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'items.required' => 'Add at least one item!',
+        ];
+    }
 }
