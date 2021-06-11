@@ -1,4 +1,8 @@
 <template>
+    <div class="notification is-success" v-if="response.message" v-show="response.visible">
+        {{ response.message }}
+    </div>
+
     <div class="columns">
         <div class="column left">
             <div class="block component">
@@ -27,7 +31,7 @@
 
                 <table class="table is-fullwidth is-narrow">
                     <tbody>
-                        <tr v-for="(item, index) in orderItems" :key="item.id">
+                        <tr v-for="(item, index) in order.items" :key="item.id">
                             <td>{{ index+1 }}.</td>
                             <td>{{ item.name }}</td>
                             <td>{{ euro(item.amount * item.price) }}</td>
@@ -44,7 +48,7 @@
                     <p>Totaal:</p>
                     <p>{{ euro(total) }}</p>
                     <div>
-                        <button class="is-block mb-1" type="button">Afrekenen</button>
+                        <button class="is-block mb-1" type="button" @click="finishOrder">Afrekenen</button>
                         <button class="is-block" type="button" @click="clearOrder">Verwijderen</button>
                     </div>
                 </div>
@@ -60,7 +64,14 @@ export default {
         return {
             categories: [],
             items: [],
-            orderItems: [],
+            order: {
+                'items': [],
+            },
+            response: {
+                visible: true,
+                message: '',
+                errors: [],
+            },
         }
     },
     mounted() {
@@ -74,12 +85,12 @@ export default {
     },
     computed: {
         total() {
-            return _.sum(this.orderItems.map(item => item.amount * item.price));
+            return _.sum(this.order.items.map(item => item.amount * item.price));
         }
     },
     methods: {
-        category_item(category) {
-            return this.items.filter(item => item.category_id === category);
+        category_item(category_id) {
+            return this.items.filter(item => item.category.id === category_id);
         },
 
         euro(price) {
@@ -92,8 +103,8 @@ export default {
         },
 
         addItem(item) {
-            if (this.orderItems.includes(item)) {
-                let orderItem = this.orderItems.find(oi => oi.id === item.id);
+            if (this.order.items.includes(item)) {
+                let orderItem = this.order.items.find(oi => oi.id === item.id);
                 orderItem.amount++;
                 return;
             }
@@ -101,11 +112,11 @@ export default {
             let orderItem = item;
             orderItem.amount = 1;
 
-            this.orderItems.push(orderItem);
+            this.order.items.push(orderItem);
         },
 
         removeItem(item) {
-            this.orderItems = this.orderItems.filter(oi => oi.id !== item.id);
+            this.order.items = this.order.items.filter(oi => oi.id !== item.id);
         },
 
         updateItem(item) {
@@ -116,7 +127,38 @@ export default {
         },
 
         clearOrder() {
-            this.orderItems = [];
+            this.order = {
+                'items': [],
+            };
+        },
+
+        finishOrder() {
+            axios.post('api/v1/orders', this.order)
+                .then(res => {
+                    if (res.status == 200) {
+                        // reset the form
+                        this.clearOrder();
+
+                        // show a success message for 3 seconds
+                        this.response.visible = true;
+                        this.response.message = 'Order created successfully!';
+                        this.response.errors = [];
+                        setTimeout(() => this.response.visible = false, 3000);
+                    }
+                })
+                .catch(error => {
+                    if (error.response) {
+                        let data = error.response.data;
+
+                        // add errors to the error bag
+                        this.response.message = data.message;
+                        this.response.errors = data.errors;
+                    } else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.error(error.message);
+                    }
+                });
         }
     }
 }
