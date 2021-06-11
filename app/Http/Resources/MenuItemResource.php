@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\MenuCategory;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class MenuItemResource extends JsonResource
@@ -19,9 +20,12 @@ class MenuItemResource extends JsonResource
             'name' => $this->name,
             'number' => $this->number,
             'number_addition' => $this->number_addition,
-            'category_id' => $this->category_id,
+            'category' => new MenuCategoryResource($this->category),
             'price' => $this->price,
             'description' => $this->description,
+            'amount' => $this->whenPivotLoaded('order_item', function () {
+                return $this->pivot->amount;
+            }),
         ];
     }
 }

@@ -16,7 +16,7 @@ class MenuItemController extends Controller
      */
     public function index()
     {
-        return MenuItemResource::collection(MenuItem::all());
+        return MenuItemResource::collection(MenuItem::with('category')->get());
     }
 
     /**
@@ -44,7 +44,7 @@ class MenuItemController extends Controller
      */
     public function show($id)
     {
-        return new MenuItemResource(MenuItem::findOrFail($id));
+        return new MenuItemResource(MenuItem::with('category')->findOrFail($id));
     }
 
     /**
