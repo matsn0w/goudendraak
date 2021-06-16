@@ -1,5 +1,9 @@
-@extends('layouts.base')
+@extends('layouts.admin', [
+    'title' => 'Nieuws bewerken'
+])
 
 @section('content')
-    <News-Edit id="{{ $ítem->id }}"></News-Edit>
+    <div class="box">
+        <News-Edit id="{{ $ítem->id }}"></News-Edit>
+    </div>
 @endsection

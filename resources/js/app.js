@@ -3,9 +3,9 @@ require('./bootstrap');
 import { createApp } from 'vue';
 
 import News from './components/News.vue';
-import NewsIndex from './components/admin/NewsIndex.vue';
-import NewsCreate from './components/admin/NewsCreate.vue';
-import NewsEdit from './components/admin/NewsEdit.vue';
+import NewsIndex from './components/admin/news/NewsIndex.vue';
+import NewsCreate from './components/admin/news/NewsCreate.vue';
+import NewsEdit from './components/admin/news/NewsEdit.vue';
 import Cashier from './components/Cashier.vue';
 import Sales from './components/Sales.vue';
 import Dishes from './components/Dishes.vue';

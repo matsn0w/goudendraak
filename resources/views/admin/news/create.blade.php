@@ -1,5 +1,9 @@
-@extends('layouts.base')
+@extends('layouts.admin', [
+    'title' => 'Nieuws toevoegen'
+])
 
 @section('content')
-    <News-Create></News-Create>
+    <div class="box">
+        <News-Create></News-Create>
+    </div>
 @endsection

@@ -1,5 +1,5 @@
 <template>
-    <table>
+    <table class="table is-hoverable is-fullwidth">
         <thead>
             <tr>
                 <th>Titel</th>
@@ -16,10 +16,14 @@
                     <a :href="`/admin/news/${item.id}/edit`">Bewerken</a>
                 </td>
             </tr>
+
+            <tr v-if="items.length === 0">
+                <td colspan="3">
+                    <em>Er is geen nieuws!</em>
+                </td>
+            </tr>
         </tbody>
     </table>
-
-    <a href="/admin/news/create">Nieuw</a>
 </template>
 
 <script>
