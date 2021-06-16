@@ -3,6 +3,9 @@
 @section('content')
     <article class="content">
         <p>Dit is onze menukaart. Klik om te vergroten.</p>
+        <p>
+            <a class="has-text-black underline" href="{{ route('menu.download') }}">Download de menukaart als PDF</a>
+        </p>
 
         <figure class="image">
             <a href="{{ asset('dist/img/menu_1.jpg') }}" target="_blank">
