@@ -109,6 +109,8 @@
 </template>
 
 <script>
+import shared from '../shared';
+
 export default {
     name: "Sales",
     data() {
@@ -129,16 +131,10 @@ export default {
             };
         },
     },
+    created() {
+        this.euro = shared.euro.bind(this);
+    },
     methods: {
-        euro(price) {
-            let f = new Intl.NumberFormat('nl-NL', {
-                style: 'currency',
-                currency: 'EUR',
-            });
-
-            return f.format(price);
-        },
-
         generate() {
             // get sales
             axios.get('/api/v1/orders', {

@@ -28,7 +28,7 @@
 
 <script>
 export default {
-    name: "News",
+    name: "NewsIndex",
     data() {
         return {
             route: '/api/v1/newsitems',
