@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CashierController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,7 +41,11 @@ Route::name('admin.')->prefix('/admin')->middleware(['auth', 'role:admin'])->gro
 
     Route::get('/menu', [MenuController::class, 'admin'])->name('menu.index');
     Route::get('/menu/create', [MenuController::class, 'create'])->name('menu.create');
-    Route::get('/menu/{item}/edit', [MenuController::class, 'edit'])->name('menu.edit');
+    Route::get('/{item}/edit', [MenuController::class, 'edit'])->name('menu.edit');
+
+    Route::get('/users', [UserController::class, 'admin'])->name('users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::get('/users/{item}/edit', [UserController::class, 'edit'])->name('users.edit');
 });
 
 Route::name('cashier.')->prefix('/cashier')->middleware(['auth', 'role:admin,cashier'])->group(function() {
