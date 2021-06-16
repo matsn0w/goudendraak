@@ -6,6 +6,9 @@ use App\Models\Order;
 use App\Http\Requests\OrderRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\OrderResource;
+use Carbon\Carbon;
+use Exception;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -14,9 +17,31 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return OrderResource::collection(Order::with('items')->get());
+        $query = Order::with('items');
+
+        if ($request->filled('startdate')) {
+            try {
+                $startdate = Carbon::parse($request->input('startdate'));
+            } catch (Exception $e) {
+                abort(400, 'Invalid start date!');
+            }
+
+            $query->date($startdate);
+        }
+
+        if ($request->filled('enddate')) {
+            try {
+                $enddate = Carbon::parse($request->input('enddate'));
+            } catch (Exception $e) {
+                abort(400, 'Invalid end date!');
+            }
+
+            $query->date($enddate);
+        }
+
+        return OrderResource::collection($query->get());
     }
 
     /**

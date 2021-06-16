@@ -18,4 +18,17 @@ class Order extends Model
         return $this->belongsToMany(MenuItem::class, 'order_item', 'order_id', 'item_id')
             ->withPivot('amount');
     }
+
+    public function scopeDate($query, $start = null, $end = null)
+    {
+        if ($start) {
+            $query = $query->whereDate('created_at', '>=', $start);
+        }
+
+        if ($end) {
+            $query = $query->whereDate('created_at', '<=', $end);
+        }
+
+        return $query;
+    }
 }
