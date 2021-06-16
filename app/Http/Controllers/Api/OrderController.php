@@ -64,7 +64,8 @@ class OrderController extends Controller
         // attach items
         foreach ($items as $item) {
             $order->items()->attach($item['id'], [
-                'amount' => $item['amount']
+                'amount' => $item['amount'],
+                'notes' => $item['notes'],
             ]);
         }
 

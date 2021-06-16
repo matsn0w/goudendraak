@@ -37,13 +37,26 @@
                 <h3 class="has-text-centered">Bestelling</h3>
 
                 <table class="table is-fullwidth is-narrow">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Naam</th>
+                            <th>Prijs</th>
+                            <th>Aantal</th>
+                            <th>Opmerkingen</th>
+                        </tr>
+                    </thead>
+
                     <tbody>
                         <tr v-for="(item, index) in order.items" :key="item.id">
-                            <td>{{ index+1 }}.</td>
+                            <td>{{ index + 1 }}.</td>
                             <td>{{ item.name }}</td>
                             <td>{{ euro(item.amount * item.price) }}</td>
                             <td>
-                                <input class="is-pulled-right" type="number" min="0" v-model.number="item.amount" @change="updateItem(item)">
+                                <input class="input is-small" type="number" min="0" v-model.number="item.amount" @change="updateItem(item)">
+                            </td>
+                            <td>
+                                <input class="input is-small" type="text" v-model="item.notes">
                             </td>
                         </tr>
                     </tbody>
@@ -54,6 +67,7 @@
                 <div class="is-size-5 has-text-weight-bold is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center">
                     <p>Totaal:</p>
                     <p>{{ euro(total) }}</p>
+
                     <div class="buttons">
                         <button class="button" type="button" @click="clearOrder">Verwijderen</button>
                         <button class="button is-primary" type="button" @click="finishOrder">Afrekenen</button>
@@ -114,7 +128,8 @@ export default {
             }
 
             let orderItem = item;
-            orderItem.amount = 1;
+            orderItem.amount = 1
+            orderItem.notes = '';
 
             this.order.items.push(orderItem);
         },
@@ -151,6 +166,7 @@ export default {
                         this.response.visible = true;
                         this.response.success = 'Order created successfully!';
                         this.response.errors = [];
+
                         setTimeout(() => this.response.visible = false, 3000);
                     }
                 })
@@ -166,7 +182,6 @@ export default {
                                 this.response.errors.push(item);
                             }
                         }
-
                     } else if (error.request) {
                         console.log(error.request);
                     } else {
