@@ -1,9 +1,11 @@
 {
     "/dist/js/app.js": "/dist/js/app.js",
+    "/dist/css/cashier.css": "/dist/css/cashier.css",
     "/dist/css/app.css": "/dist/css/app.css",
     "/dist/img/border.png": "/dist/img/border.png",
     "/dist/img/dragon-small-flipped.png": "/dist/img/dragon-small-flipped.png",
     "/dist/img/dragon-small.png": "/dist/img/dragon-small.png",
+    "/dist/img/goodpay.png": "/dist/img/goodpay.png",
     "/dist/img/menu_1.jpg": "/dist/img/menu_1.jpg",
     "/dist/img/menu_2.jpg": "/dist/img/menu_2.jpg",
     "/dist/fonts/chinese.msyh.ttf": "/dist/fonts/chinese.msyh.ttf",

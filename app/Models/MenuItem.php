@@ -19,6 +19,11 @@ class MenuItem extends Model
 
     public function category()
     {
-        return $this->hasOne(MenuCategory::class);
+        return $this->hasOne(MenuCategory::class, 'id', 'category_id');
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
     }
 }
