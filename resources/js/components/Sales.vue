@@ -48,6 +48,7 @@
                         <th>Omzet</th>
                         <th>BTW</th>
                         <th>Brutowinst</th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -57,6 +58,45 @@
                         <td>{{ euro(sale.financial.turnover) }}</td>
                         <td>{{ euro(sale.financial.tax) }}</td>
                         <td>{{ euro(sale.financial.profit) }}</td>
+                        <td>
+                            <div class="dropdown is-hoverable">
+                                <div class="dropdown-trigger">
+                                    <button class="button is-small" aria-haspopup="true" aria-controls="dropdown-menu2">Details</button>
+                                </div>
+
+                                <div class="dropdown-menu" id="dropdown-menu2" role="menu">
+                                    <div class="dropdown-content">
+                                        <div class="dropdown-item">
+                                            <p>Tijdstip: {{ sale.time }}</p>
+                                        </div>
+
+                                        <div class="dropdown-item">
+                                            <table class="table is-narrow is-fullwidth">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Naam</th>
+                                                        <th>Nummer</th>
+                                                        <th>Prijs</th>
+                                                        <th>Aantal</th>
+                                                        <th>Subtotaal</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <tr v-for="item in sale.items">
+                                                        <td>{{ item.name }}</td>
+                                                        <td>{{ item.number }}{{ item.number_addition }}</td>
+                                                        <td>{{ euro(item.price) }}</td>
+                                                        <td>{{ item.amount }}</td>
+                                                        <td>{{ euro(item.amount * item.price) }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
 
                     <tr v-if="sales.length === 0">
