@@ -6,13 +6,13 @@
     </div>
 
     <div class="level-right">
-        <a href="{{ route('cashier.index') }}" class="level-item button">Kassa</a>
-        <a href="{{ route('cashier.dishes') }}" class="level-item button">Gerechten</a>
-        <a href="{{ route('cashier.overview') }}" class="level-item button">Verkoop Overzicht</a>
+        <a href="{{ route('cashier.index') }}" class="level-item button big">Kassa</a>
+        <a href="{{ route('cashier.dishes') }}" class="level-item button big">Gerechten</a>
+        <a href="{{ route('cashier.overview') }}" class="level-item button big">Verkoop Overzicht</a>
 
         <form action="{{ route('auth.logout') }}" method="post">
             @csrf
-            <button class="level-item button" type="submit">Log uit</a>
+            <button class="level-item button big" type="submit">Log uit</a>
         </form>
     </div>
 </nav>
