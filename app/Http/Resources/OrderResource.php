@@ -19,6 +19,11 @@ class OrderResource extends JsonResource
             'date' => $this->created_at->format('d-m-Y'),
             'time' => $this->created_at->format('H:i'),
             'items' => MenuItemResource::collection($this->whenLoaded('items')),
+            'financial' => [
+                'turnover' => $this->turnover,
+                'tax' => $this->tax,
+                'profit' => $this->profit,
+            ],
         ];
     }
 }

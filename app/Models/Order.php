@@ -31,4 +31,21 @@ class Order extends Model
 
         return $query;
     }
+
+    public function getTurnoverAttribute()
+    {
+        return $this->items->sum(function ($item) {
+            return $item->pivot->amount * $item->price;
+        });
+    }
+
+    public function getTaxAttribute()
+    {
+        return $this->turnover * 0.21;
+    }
+
+    public function getProfitAttribute()
+    {
+        return $this->turnover / 1.21;
+    }
 }
