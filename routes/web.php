@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CashierController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,9 +31,14 @@ Route::name('auth.')->prefix('/auth')->group(function() {
 
 Route::name('admin.')->prefix('/admin')->middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/', [AdminController::class, 'index'])->name('index');
+
     Route::get('/news', [NewsController::class, 'admin'])->name('news.index');
     Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
     Route::get('/news/{news}/edit', [NewsController::class, 'edit'])->name('news.edit');
+
+    Route::get('/menu', [MenuController::class, 'admin'])->name('menu.index');
+    Route::get('/menu/create', [MenuController::class, 'create'])->name('menu.create');
+    Route::get('/menu/{item}/edit', [MenuController::class, 'edit'])->name('menu.edit');
 });
 
 Route::name('cashier.')->prefix('/cashier')->middleware(['auth', 'role:admin,cashier'])->group(function() {

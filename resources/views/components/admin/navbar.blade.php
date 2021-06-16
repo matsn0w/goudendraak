@@ -16,7 +16,7 @@
             <div class="navbar-start">
                 <a class="navbar-item" href="{{ route('admin.index') }}">Home</a>
                 <a class="navbar-item" href="{{ route('admin.news.index') }}">Nieuws</a>
-                <a class="navbar-item" href="{{ route('admin.index') }}">Menu</a>
+                <a class="navbar-item" href="{{ route('admin.menu.index') }}">Menu</a>
                 <a class="navbar-item" href="{{ route('admin.index') }}">Gebruikers</a>
             </div>
 

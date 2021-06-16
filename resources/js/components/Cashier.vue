@@ -65,6 +65,8 @@
 </template>
 
 <script>
+import shared from '../shared';
+
 export default {
     name: "Cashier",
     data() {
@@ -91,6 +93,9 @@ export default {
             .then(res => res.data)
             .then(res => this.items = res.data);
     },
+    created() {
+        this.euro = shared.euro.bind(this);
+    },
     computed: {
         total() {
             return _.sum(this.order.items.map(item => item.amount * item.price));
@@ -99,15 +104,6 @@ export default {
     methods: {
         category_item(category_id) {
             return this.items.filter(item => item.category.id === category_id);
-        },
-
-        euro(price) {
-            let f = new Intl.NumberFormat('nl-NL', {
-                style: 'currency',
-                currency: 'EUR',
-            });
-
-            return f.format(price);
         },
 
         addItem(item) {

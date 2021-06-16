@@ -7,7 +7,7 @@
         </div>
     </form>
 
-    <table class="table is-striped is-hoverable">
+    <table class="table is-hoverable is-fullwidth">
         <thead>
             <tr>
                 <th>Naam</th>
@@ -15,6 +15,7 @@
                 <th>Prijs</th>
                 <th>Categorie</th>
                 <th>Omschrijving</th>
+                <th></th>
             </tr>
         </thead>
 
@@ -25,18 +26,28 @@
                 <td>{{ euro(item.price) }}</td>
                 <td>{{ item.category.name }}</td>
                 <td>{{ item.description }}</td>
+                <td>
+                    <a :href="`/admin/menu/${item.id}/edit`">Bewerken</a>
+                </td>
+            </tr>
+
+            <tr v-if="itemsSearched.length === 0">
+                <td colspan="3">
+                    <em>Er zijn geen gerechten gevonden!</em>
+                </td>
             </tr>
         </tbody>
     </table>
 </template>
 
 <script>
-import shared from '../shared';
+import shared from '../../../shared';
 
 export default {
-    name: "Dishes",
+    name: "MenuIndex",
     data() {
         return {
+            route: '/api/v1/menuitems',
             items: [],
             search: '',
         }
@@ -64,7 +75,7 @@ export default {
         },
     },
     mounted() {
-        axios.get('/api/v1/menuitems')
+        axios.get(this.route)
             .then(res => res.data)
             .then(res => this.items = res.data);
     },
