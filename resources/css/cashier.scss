@@ -1,0 +1,77 @@
+// Colors
+$primary: #0066FF;
+$link: $primary;
+$link-hover: $primary;
+$label-color: $primary;
+
+// Bulma
+@import 'bulma/bulma';
+
+body {
+    padding: 1rem;
+}
+
+.logo {
+    height: 80px;
+}
+
+.header {
+    border-bottom: solid 2px $primary;
+}
+
+.button {
+    background-color: rgb(222, 235, 247);
+    font-weight: bold;
+    font-size: 18px;
+    width: 180px;
+    border: 1px solid $primary;
+    border-radius: 10px;
+    color: $primary;
+}
+
+.bordered {
+    border: solid 1px $primary;
+}
+
+.component {
+    @extend .bordered;
+    padding: 1rem;
+    max-height: 600px;
+    border-radius: 5px 0 0 5px;
+    overflow-y: auto;
+}
+
+.is-block {
+    display: block;
+}
+
+.left {
+    border-right: solid 2px $primary;
+}
+
+td input[type=number] {
+    max-width: 3rem;
+}
+
+.revenue {
+    @extend .bordered, .is-size-3;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    width: 100%;
+    padding: 1rem;
+}
+
+.gap {
+    gap: 1rem;
+}
+
+hr {
+    border-top: 2px solid $primary;
+    margin: 1rem 0 1.5rem 0;
+}
+
+.dropdown-menu {
+    white-space: nowrap;
+}

@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const webpack = require('webpack');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,7 +12,22 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+mix.js('resources/js/app.js', 'public/dist/js')
+    .sass('resources/css/app.scss', 'public/dist/css')
+    .sass('resources/css/cashier.scss', 'public/dist/css')
+    .vue({
+        version: 3
+    })
+    .copyDirectory('resources/img', 'public/dist/img')
+    .copyDirectory('resources/fonts', 'public/dist/fonts');
+
+// remove esm-builder warning
+// see: https://stackoverflow.com/questions/66189561/you-are-running-the-esm-bundler-build-of-vue-it-is-recommended-to-configure-you
+mix.webpackConfig({
+    plugins: [
+        new webpack.DefinePlugin({
+            __VUE_OPTIONS_API__: true,
+            __VUE_PROD_DEVTOOLS__: false,
+        }),
+    ],
+});
