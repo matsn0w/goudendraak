@@ -38,7 +38,7 @@ class OrderController extends Controller
                 abort(400, 'Invalid end date!');
             }
 
-            $query->date($enddate);
+            $query->date(null, $enddate);
         }
 
         return OrderResource::collection($query->get());
