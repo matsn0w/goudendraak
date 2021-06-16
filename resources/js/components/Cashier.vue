@@ -23,7 +23,7 @@
                                 <td>{{ item.name }} <small><em>{{ item.description }}</em></small></td>
                                 <td>{{ euro(item.price) }}</td>
                                 <td>
-                                    <button class="is-pulled-right" type="button" @click="addItem(item)">Toevoegen</button>
+                                    <button class="button is-small is-pulled-right" type="button" @click="addItem(item)">Toevoegen</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -54,9 +54,9 @@
                 <div class="is-size-5 has-text-weight-bold is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center">
                     <p>Totaal:</p>
                     <p>{{ euro(total) }}</p>
-                    <div>
-                        <button class="is-block mb-1" type="button" @click="finishOrder">Afrekenen</button>
-                        <button class="is-block" type="button" @click="clearOrder">Verwijderen</button>
+                    <div class="buttons">
+                        <button class="button" type="button" @click="clearOrder">Verwijderen</button>
+                        <button class="button is-primary" type="button" @click="finishOrder">Afrekenen</button>
                     </div>
                 </div>
             </div>
