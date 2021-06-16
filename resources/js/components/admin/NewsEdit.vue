@@ -1,44 +1,27 @@
 <template>
     <form :action="route" method="post" @submit="save">
-        <div class="field">
-            <label class="label" for="title">Titel</label>
+        <p>{{ response.message }}</p>
 
-            <div class="control">
-                <input class="input" type="text" name="title" id="title" v-model="form.title">
-            </div>
-
-            <div class="content help is-danger">
-                <ul v-if="response.errors.title !== undefined">
-                    <li v-for="error in response.errors.title">{{ error }}</li>
-                </ul>
-            </div>
+        <div>
+            <label for="title">Titel</label>
+            <input type="text" name="title" id="title" v-model="form.title">
+            <ul v-if="response.errors.title !== undefined">
+                <li v-for="error in response.errors.title">{{ error }}</li>
+            </ul>
         </div>
 
-        <div class="field">
-            <label class="label" for="body">Inhoud</label>
-
-            <div class="control">
-                <textarea class="textarea" name="body" id="body" cols="30" rows="10" v-model="form.body"></textarea>
-            </div>
-
-            <div class="content help is-danger">
-                <ul v-if="response.errors.body !== undefined">
-                    <li v-for="error in response.errors.body">{{ error }}</li>
-                </ul>
-            </div>
+        <div>
+            <label for="body">Inhoud</label>
+            <textarea name="body" id="body" cols="30" rows="10" v-model="form.body"></textarea>
+            <ul v-if="response.errors.body !== undefined">
+                <li v-for="error in response.errors.body">{{ error }}</li>
+            </ul>
         </div>
 
-        <div class="field is-grouped">
-            <div class="control">
-                <button type="submit" class="button is-primary">Opslaan</button>
-            </div>
-
-            <div class="control">
-                <a href="/admin/news" class="button">Terug</a>
-            </div>
+        <div>
+            <button type="submit">Opslaan</button>
+            <a href="/admin/news">Terug</a>
         </div>
-
-        <p class="help">{{ response.message }}</p>
     </form>
 </template>
 

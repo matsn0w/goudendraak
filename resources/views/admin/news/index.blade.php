@@ -1,13 +1,5 @@
-@extends('layouts.admin', [
-    'title' => 'Nieuws'
-])
-
-@section('top-right')
-    <a class="button is-primary" href="{{ route('admin.news.create') }}">Nieuw</a>
-@endsection
+@extends('layouts.base')
 
 @section('content')
-    <div class="box">
-        <News-Index></News-Index>
-    </div>
+    <News-Index></News-Index>
 @endsection

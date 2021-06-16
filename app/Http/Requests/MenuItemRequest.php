@@ -34,7 +34,7 @@ class MenuItemRequest extends FormRequest
                         Rule::unique('menu_items')->where(function ($query) {
                             return $query->where('number', $this->number)
                                 ->where('number_addition', $this->number_addition);
-                        })->ignore($this->id),
+                        }),
                     ],
                     'number_addition' => ['nullable', 'max:3'],
                     'category_id' => ['sometimes', 'integer', 'exists:menu_categories,id'],
