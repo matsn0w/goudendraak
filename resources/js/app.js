@@ -8,6 +8,7 @@ import NewsCreate from './components/admin/NewsCreate.vue';
 import NewsEdit from './components/admin/NewsEdit.vue';
 import Cashier from './components/Cashier.vue';
 import Sales from './components/Sales.vue';
+import Dishes from './components/Dishes.vue';
 
 createApp({
     components: {
@@ -16,6 +17,7 @@ createApp({
         NewsCreate,
         NewsEdit,
         Cashier,
-        Sales
+        Sales,
+        Dishes,
     }
 }).mount('#app');
