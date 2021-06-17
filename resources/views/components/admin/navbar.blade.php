@@ -16,7 +16,16 @@
             <div class="navbar-start">
                 <a class="navbar-item" href="{{ route('admin.index') }}">Home</a>
                 <a class="navbar-item" href="{{ route('admin.news.index') }}">Nieuws</a>
-                <a class="navbar-item" href="{{ route('admin.menu.index') }}">Menu</a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">Menu</a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="{{ route('admin.menu.index') }}">Menu</a>
+                        <a class="navbar-item" href="{{ route('admin.menu.categories.index') }}">Categorieën</a>
+                    </div>
+                </div>
+
                 <a class="navbar-item" href="{{ route('admin.users.index') }}">Gebruikers</a>
             </div>
 
