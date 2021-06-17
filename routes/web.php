@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CashierController;
+use App\Http\Controllers\LangController;
 use App\Http\Controllers\MenuCategoryController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\NewsController;
@@ -26,6 +27,8 @@ Route::view('/news', 'pages.news')->name('news');
 Route::view('/contact', 'pages.contact')->name('contact');
 
 Route::get('/menu/download', [MenuController::class, 'download'])->name('menu.download');
+
+Route::post('/lang', [LangController::class, 'switch'])->name('lang.switch');
 
 Route::name('auth.')->prefix('/auth')->group(function() {
     Route::view('/login', 'auth.login')->name('login');
