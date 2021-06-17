@@ -1,5 +1,5 @@
 @extends('layouts.admin', [
-    'title' => __('messages.menu')
+    'title' => __('messages.dishes')
 ])
 
 @section('top-right')
