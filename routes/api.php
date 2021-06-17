@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Api\MenuCategoryController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\RoleController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\MenuItemController;
 use App\Http\Controllers\Api\NewsItemController;
-use App\Http\Controllers\Api\OrderController;
-use App\Http\Controllers\Api\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\MenuCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ Route::prefix('v1')->group(function() {
     Route::apiResource('menucategories', MenuCategoryController::class);
     Route::apiResource('orders', OrderController::class);
     Route::apiResource('users', UserController::class);
+    Route::apiResource('roles', RoleController::class);
 
     // Temp
     Route::get('categories', function () {
@@ -40,37 +42,6 @@ Route::prefix('v1')->group(function() {
                 [
                     'id' => 3,
                     'name' => 'BAMI EN NASI GERECHTEN',
-                ],
-                [
-                    'id' => 999,
-                    'name' => '== PLEASE ADD A RESOURCE ===',
-                ]
-            ]
-        ];
-    });
-
-    Route::get('roles', function () {
-        return [
-            'data' => [
-                [
-                    'id' => 1,
-                    'name' => 'admin',
-                ],
-                [
-                    'id' => 2,
-                    'name' => 'manager',
-                ],
-                [
-                    'id' => 3,
-                    'name' => 'cashier',
-                ],
-                [
-                    'id' => 4,
-                    'name' => 'waiter',
-                ],
-                [
-                    'id' => 5,
-                    'name' => 'customer',
                 ],
                 [
                     'id' => 999,
