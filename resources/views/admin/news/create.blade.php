@@ -1,5 +1,5 @@
 @extends('layouts.admin', [
-    'title' => 'Nieuws toevoegen'
+    'title' => __('messages.add_news')
 ])
 
 @section('content')

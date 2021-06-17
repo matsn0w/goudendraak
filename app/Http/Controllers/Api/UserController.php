@@ -104,7 +104,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         if ($user == Auth::user()) {
-            abort(400, 'You can\'t delete yourself!');
+            abort(400, __('messages.cant_delete_self'));
         }
 
         // delete the user

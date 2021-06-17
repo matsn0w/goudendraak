@@ -1,9 +1,9 @@
 @extends('layouts.admin', [
-    'title' => 'Menu'
+    'title' => __('messages.dishes')
 ])
 
 @section('top-right')
-    <a class="button is-primary" href="{{ route('admin.menu.create') }}">Nieuw</a>
+    <a class="button is-primary" href="{{ route('admin.menu.create') }}">{{ __('messages.new') }}</a>
 @endsection
 
 @section('content')

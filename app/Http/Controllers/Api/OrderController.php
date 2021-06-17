@@ -25,7 +25,7 @@ class OrderController extends Controller
             try {
                 $startdate = Carbon::parse($request->input('startdate'));
             } catch (Exception $e) {
-                abort(400, 'Invalid start date!');
+                abort(400, __('messages.invalid_start_date'));
             }
 
             $query->date($startdate);
@@ -35,7 +35,7 @@ class OrderController extends Controller
             try {
                 $enddate = Carbon::parse($request->input('enddate'));
             } catch (Exception $e) {
-                abort(400, 'Invalid end date!');
+                abort(400, __('messages.invalid_end_date'));
             }
 
             $query->date(null, $enddate);

@@ -23,7 +23,7 @@
 @endpush
 
 @section('content')
-    <h1>Menukaart</h1>
+    <h1>{{ __('messages.header_menu_menu') }}</h1>
 
     @foreach ($categories as $category)
         <p><strong>{{ $category->name }}</strong></p>

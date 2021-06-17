@@ -30,11 +30,4 @@ class OrderRequest extends FormRequest
             'items.*.notes' => ['nullable', 'string'],
         ];
     }
-
-    public function messages()
-    {
-        return [
-            'items.required' => 'Add at least one item!',
-        ];
-    }
 }

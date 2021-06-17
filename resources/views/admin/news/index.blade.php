@@ -1,9 +1,9 @@
 @extends('layouts.admin', [
-    'title' => 'Nieuws'
+    'title' => __('messages.news')
 ])
 
 @section('top-right')
-    <a class="button is-primary" href="{{ route('admin.news.create') }}">Nieuw</a>
+    <a class="button is-primary" href="{{ route('admin.news.create') }}">{{ __('messages.new') }}</a>
 @endsection
 
 @section('content')

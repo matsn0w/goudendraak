@@ -14,31 +14,31 @@
 
         <div id="navbar" class="navbar-menu">
             <div class="navbar-start">
-                <a class="navbar-item" href="{{ route('admin.index') }}">Home</a>
-                <a class="navbar-item" href="{{ route('admin.news.index') }}">Nieuws</a>
+                <a class="navbar-item" href="{{ route('admin.index') }}">{{ __('messages.home') }}</a>
+                <a class="navbar-item" href="{{ route('admin.news.index') }}">{{ __('messages.news') }}</a>
 
                 <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">Menu</a>
+                    <a class="navbar-link">{{ __('messages.menu') }}</a>
 
                     <div class="navbar-dropdown">
-                        <a class="navbar-item" href="{{ route('admin.menu.index') }}">Gerechten</a>
-                        <a class="navbar-item" href="{{ route('admin.menu.categories.index') }}">Categorieën</a>
+                        <a class="navbar-item" href="{{ route('admin.menu.index') }}">{{ __('messages.dishes') }}</a>
+                        <a class="navbar-item" href="{{ route('admin.menu.categories.index') }}">{{ __('messages.categories') }}</a>
                     </div>
                 </div>
 
-                <a class="navbar-item" href="{{ route('admin.users.index') }}">Gebruikers</a>
+                <a class="navbar-item" href="{{ route('admin.users.index') }}">{{ __('messages.users') }}</a>
             </div>
 
             <div class="navbar-end">
                 <div class="navbar-item">
-                    <em>Ingelogd als #<strong>{{ auth()->user()->code }}</strong> ({{ auth()->user()->roles->first()->name }})</em>
+                    <em>{{ __('messages.admin_navbar_logged') }} #<strong>{{ auth()->user()->code }}</strong> ({{ auth()->user()->roles->first()->name }})</em>
                 </div>
 
                 <div class="navbar-item">
                     <div class="buttons">
                         <form action="{{ route('auth.logout') }}" method="post">
                             @csrf
-                            <button class="button is-light" type="submit">Log uit</a>
+                            <button class="button is-light" type="submit">{{ __('messages.log_out') }}</a>
                         </form>
                     </div>
                 </div>

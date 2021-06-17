@@ -1,5 +1,5 @@
 @extends('layouts.admin', [
-    'title' => 'Menu item bewerken'
+    'title' => __('messages.edit_menu_item')
 ])
 
 @section('content')
