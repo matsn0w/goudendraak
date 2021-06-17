@@ -23,6 +23,7 @@ class MenuItemResource extends JsonResource
             'category' => new MenuCategoryResource($this->category),
             'price' => $this->price,
             'description' => $this->description,
+            'spiciness' => $this->spiciness,
             'amount' => $this->whenPivotLoaded('order_item', function () {
                 return $this->pivot->amount;
             }),

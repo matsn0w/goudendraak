@@ -40,9 +40,10 @@ class MenuItemRequest extends FormRequest
                     'category_id' => ['sometimes', 'integer', 'exists:menu_categories,id'],
                     'price' => ['sometimes', 'numeric', 'min:0'],
                     'description' => ['nullable'],
+                    'spiciness' => ['required', 'integer', 'min:0', 'max:3'],
                 ];
 
-            default:
+                default:
                 return [
                     'name' => ['required'],
                     'number' => [
@@ -50,13 +51,14 @@ class MenuItemRequest extends FormRequest
                         'integer',
                         Rule::unique('menu_items')->where(function ($query) {
                             return $query->where('number', $this->number)
-                                ->where('number_addition', $this->number_addition);
+                            ->where('number_addition', $this->number_addition);
                         }),
                     ],
                     'number_addition' => ['nullable', 'max:3'],
                     'category_id' => ['required', 'integer', 'exists:menu_categories,id'],
                     'price' => ['required', 'numeric', 'min:0'],
                     'description' => ['nullable'],
+                    'spiciness' => ['required', 'integer', 'min:0', 'max:3'],
                 ];
         }
     }

@@ -79,6 +79,20 @@
         </div>
 
         <div class="field">
+            <label class="label" for="spiciness">Pittigheid</label>
+
+            <div class="control">
+                <input class="input" type="number" min="0" step="1" name="spiciness" id="spiciness" v-model="form.spiciness">
+            </div>
+
+            <div class="content help is-danger">
+                <ul v-if="response.errors.spiciness !== undefined">
+                    <li v-for="error in response.errors.spiciness">{{ error }}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="field">
             <label class="label" for="description">Omschrijving</label>
 
             <div class="control">
@@ -123,7 +137,7 @@ export default {
     },
 
     mounted() {
-        axios.get('/api/v1/categories')
+        axios.get('/api/v1/menucategories')
             .then(res => res.data)
             .then(res => this.categories = res.data);
     },

@@ -27,7 +27,9 @@
                 <th>#</th>
                 <th>Naam</th>
                 <th>Categorie</th>
+                <th>Pittigheid</th>
                 <th>Prijs</th>
+                <th></th>
             </thead>
 
             <tbody>
@@ -36,14 +38,18 @@
                         <td>{{ dish.number }}{{ dish.number_addition }}.</td>
                         <td v-html="dish.name"></td>
                         <td>{{ dish.category.name }}</td>
+                        <td><small>{{ '🌶️'.repeat(dish.spiciness) }}</small></td>
                         <td>{{ euro((dish.amount || 1) * dish.price) }}</td>
+                        <td>
+                            <button class="button is-small" @click="dish.showDetails = !dish.showDetails" :disabled="waiting">Bestellen</button>
+                        </td>
                     </tr>
 
-                    <tr>
+                    <tr :hidden="!dish.showDetails">
                         <td colspan="2">
                             <small><em>{{ dish.description }}</em></small>
                         </td>
-                        <td colspan="2" class="w-50">
+                        <td colspan="3" class="w-50">
                             <div class="is-flex is-align-items-center">
                                 <button class="button" @click="remove(dish)" :disabled="dish.amount === 0 || waiting">-</button>
                                 <span class="mx-3">{{ dish.amount }}</span>
@@ -74,7 +80,7 @@
 
             <div class="field is-grouped">
                 <div class="control">
-                    <button type="submit" class="button is-primary" @click="placeOrder">Bestellen</button>
+                    <button type="submit" class="button is-primary" :disabled="!order.table" @click="placeOrder">Bestellen</button>
                 </div>
 
                 <div class="control">

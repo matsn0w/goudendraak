@@ -14,6 +14,7 @@
                 <th>Nummer</th>
                 <th>Prijs</th>
                 <th>Categorie</th>
+                <th>Pittigheid</th>
                 <th>Omschrijving</th>
                 <th></th>
             </tr>
@@ -25,6 +26,7 @@
                 <td>{{ item.number }}{{ item.number_addition }}</td>
                 <td>{{ euro(item.price) }}</td>
                 <td>{{ item.category.name }}</td>
+                <td><small>{{ '🌶️'.repeat(item.spiciness) }}</small></td>
                 <td>{{ item.description }}</td>
                 <td>
                     <a :href="`/admin/menu/${item.id}/edit`">Bewerken</a>

@@ -16,6 +16,7 @@ class MenuItem extends Model
         'category_id',
         'price',
         'description',
+        'spiciness',
     ];
 
     public function category()
