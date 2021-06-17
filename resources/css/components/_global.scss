@@ -17,3 +17,9 @@ a:not([class]):hover {
 .underline {
     text-decoration: underline;
 }
+
+@for $i from 0 through 100 {
+    .w-#{$i} {
+        width: #{$i}#{'%'};
+    }
+}

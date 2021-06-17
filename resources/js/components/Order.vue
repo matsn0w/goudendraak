@@ -5,11 +5,11 @@
         </div>
 
         <div class="level-right">
-            <button class="button" type="button" @click="placeOrder" :disabled="waiting">Plaats bestelling</button>
+            <button class="button" type="button" @click="enterDetails" :disabled="waiting || order.items.length === 0">Plaats bestelling</button>
         </div>
     </div>
 
-    <div :hidden="!message">
+    <div class="block has-text-centered" :hidden="!message">
         {{ message }}
     </div>
 
@@ -22,13 +22,12 @@
     </form>
 
     <div class="table-container">
-        <table>
+        <table class="has-text-left">
             <thead>
                 <th>#</th>
                 <th>Naam</th>
                 <th>Categorie</th>
                 <th>Prijs</th>
-                <th>Aantal</th>
             </thead>
 
             <tbody>
@@ -37,21 +36,54 @@
                         <td>{{ dish.number }}{{ dish.number_addition }}.</td>
                         <td>{{ dish.name }}</td>
                         <td>{{ dish.category.name }}</td>
-                        <td>{{ euro(dish.price) }}</td>
-                        <td>
-                            <button class="button" @click="remove(dish)" :disabled="dish.amount === 0 || waiting">-</button>
-                            <span>{{ dish.amount }}</span>
-                            <button class="button" @click="add(dish)" :disabled="waiting">+</button>
-                        </td>
+                        <td>{{ euro((dish.amount || 1) * dish.price) }}</td>
                     </tr>
-                    <tr v-if="dish.description">
-                        <td colspan="5" class="has-text-left">
+
+                    <tr>
+                        <td colspan="2">
                             <small><em>{{ dish.description }}</em></small>
+                        </td>
+                        <td colspan="2" class="w-50">
+                            <div class="is-flex is-align-items-center">
+                                <button class="button" @click="remove(dish)" :disabled="dish.amount === 0 || waiting">-</button>
+                                <span class="mx-3">{{ dish.amount }}</span>
+                                <button class="button" @click="add(dish)" :disabled="waiting">+</button>
+
+                                <input class="input ml-3" type="text" :disabled="dish.amount === 0" v-model="dish.notes">
+                            </div>
                         </td>
                     </tr>
                 </template>
             </tbody>
         </table>
+    </div>
+
+    <div class="modal" :class="{ 'is-active': modal }">
+        <div class="modal-background"></div>
+
+        <div class="modal-content box content">
+            <p class="has-text-centered">Orderbedrag: {{ euro(total) }}</p>
+
+            <div class="field">
+                <label class="label" for="table">Wat is uw tafelnummer?</label>
+
+                <div class="control">
+                    <input class="input" type="number" min="1" step="1" name="table" id="table" v-model.number="order.table">
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="submit" class="button is-primary" @click="placeOrder">Bestellen</button>
+                </div>
+
+                <div class="control">
+                    <button type="button" class="button" @click="modal = false">Annuleren</button>
+                </div>
+            </div>
+        </div>
+
+        <button class="modal-close is-large" aria-label="close" @click="modal = false"></button>
     </div>
 </template>
 
@@ -64,12 +96,14 @@ export default {
     data() {
         return {
             order: {
+                table: null,
                 items: [],
             },
             items: [],
             search: '',
             message: '',
             waiting: false,
+            modal: false,
         }
     },
 
@@ -93,6 +127,10 @@ export default {
 
                 return false;
             });
+        },
+
+        total() {
+            return _.sum(this.order.items.map(item => item.amount * item.price));
         },
     },
 
@@ -136,19 +174,42 @@ export default {
             }
         },
 
+        enterDetails() {
+            this.modal = true;
+        },
+
         placeOrder() {
+            this.modal = false;
             this.message = 'Bestelling geplaatst! U kunt over 10 minuten een volgende bestelling plaatsen.';
             this.waiting = true;
 
-            setTimeout(() => {
-                this.resetOrder();
-            }, 0.1 * 60 * 1000); // 10 m * 60 s * 1000 ms
+            axios.post('api/v1/orders', this.order)
+                .then(res => {
+                    if (res.status == 200) {
+                        setTimeout(() => {
+                            this.resetOrder();
+                        }, 10 * 60 * 1000); // 10 m * 60 s * 1000 ms
+                    }
+                })
+                .catch(error => {
+                    if (error.response) {
+                        let data = error.response.data;
+
+                        // add errors to the error bag
+                        this.message = data.message;
+                    } else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.error(error.message);
+                    }
+                });
         },
 
         resetOrder() {
             this.message = '';
             this.waiting = false;
             this.order = {
+                table: null,
                 items: [],
             };
             this.fetchItems();
