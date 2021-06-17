@@ -47,3 +47,9 @@ createApp({
         Dishes,
     }
 }).mount('#app');
+
+// get current language
+const lang = document.querySelector('html').lang;
+
+// set global axios language
+axios.defaults.headers.common['Accept-Language'] = lang;
