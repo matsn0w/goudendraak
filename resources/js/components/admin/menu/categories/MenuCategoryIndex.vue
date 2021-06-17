@@ -2,7 +2,7 @@
     <form action="" method="get" class="block">
         <div class="field">
             <div class="control">
-                <input class="input" type="text" name="s" placeholder="Zoek een gerecht..." v-model="search">
+                <input class="input" type="text" name="s" placeholder="Zoek een categorie..." v-model="search">
             </div>
         </div>
     </form>
