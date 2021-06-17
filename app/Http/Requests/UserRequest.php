@@ -41,11 +41,4 @@ class UserRequest extends FormRequest
                 ];
         }
     }
-
-    public function messages()
-    {
-        return [
-            'checked.required' => 'Choose at leste one role!',
-        ];
-    }
 }

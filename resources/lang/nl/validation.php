@@ -123,15 +123,20 @@ return [
     'url'                  => ':Attribute moet een geldig URL zijn.',
     'uuid'                 => ':Attribute moet een geldig UUID zijn.',
     'custom'               => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'items' => [
+            'required' => 'Voeg tenminste één item toe!',
+        ],
+        'checked' => [
+            'required' => 'Voeg tenminste één rol toe!',
         ],
     ],
     'attributes'           => [
         'address'               => 'adres',
         'age'                   => 'leeftijd',
-        'amount'                => 'bedrag',
+        'amount'                => 'aantal',
         'available'             => 'beschikbaar',
+        'body'                  => 'inhoud',
+        'category_id'           => 'categorie',
         'city'                  => 'stad',
         'content'               => 'inhoud',
         'country'               => 'land',
@@ -154,6 +159,9 @@ return [
         'mobile'                => 'mobiel',
         'month'                 => 'maand',
         'name'                  => 'naam',
+        'notes'                 => 'opmerkingen',
+        'number'                => 'nummer',
+        'number_addition'       => 'toevoeging',
         'password'              => 'wachtwoord',
         'password_confirmation' => 'wachtwoordbevestiging',
         'phone'                 => 'telefoonnummer',
