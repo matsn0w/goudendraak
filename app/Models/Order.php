@@ -11,6 +11,7 @@ class Order extends Model
 
     protected $fillable = [
         'items',
+        'table',
     ];
 
     public function items()

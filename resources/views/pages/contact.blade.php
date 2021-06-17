@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
-    <article class="section content mb-0">
+    <article class="section content mb-0 has-text-centered">
         {!! __('messages.contact_article') !!}
     </article>
 

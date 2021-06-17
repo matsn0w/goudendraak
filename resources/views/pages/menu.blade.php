@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
-    <article class="content">
+    <article class="content has-text-centered">
         {!! __('messages.menu_article') !!}
 
         <figure class="image">

@@ -15,6 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->integer('table')->nullable();
             $table->timestamps();
         });
 
@@ -22,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->foreignId('order_id')->constrained();
             $table->foreignId('item_id')->constrained('menu_items');
             $table->integer('amount');
+            $table->string('notes')->nullable();
 
             $table->unique(['order_id', 'item_id']);
         });
