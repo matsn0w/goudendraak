@@ -7,6 +7,8 @@ import NewsIndex from './components/admin/news/NewsIndex.vue';
 import NewsCreate from './components/admin/news/NewsCreate.vue';
 import NewsEdit from './components/admin/news/NewsEdit.vue';
 
+import Order from './components/Order.vue';
+
 import MenuIndex from './components/admin/menu/MenuIndex.vue';
 import MenuCreate from './components/admin/menu/MenuCreate.vue';
 import MenuEdit from './components/admin/menu/MenuEdit.vue';
@@ -29,6 +31,8 @@ createApp({
         NewsIndex,
         NewsCreate,
         NewsEdit,
+
+        Order,
 
         MenuIndex,
         MenuCreate,

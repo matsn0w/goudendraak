@@ -13,6 +13,7 @@
             <a href="{{ route('menu') }}" class="button">{{ __('messages.header_menu_menu') }}</a>
             <a href="{{ route('news') }}" class="button">{{ __('messages.news') }}</a>
             <a href="{{ route('contact') }}" class="button">{{ __('messages.contact') }}</a>
+            <a href="{{ route('order') }}" class="button">{{ __('messages.order') }}</a>
         </nav>
     </div>
 

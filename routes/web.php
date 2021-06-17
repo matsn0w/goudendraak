@@ -25,6 +25,7 @@ Route::view('/', 'pages.home')->name('home');
 Route::view('/menu', 'pages.menu')->name('menu');
 Route::view('/news', 'pages.news')->name('news');
 Route::view('/contact', 'pages.contact')->name('contact');
+Route::view('/order', 'pages.order')->name('order');
 
 Route::get('/menu/download', [MenuController::class, 'download'])->name('menu.download');
 
