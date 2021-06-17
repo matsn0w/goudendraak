@@ -95,5 +95,4 @@ return [
     'invalid_login' => 'Invalid login!',
     'invalid_start_date' => 'Invalid start date!',
     'invalid_end_date' => 'Invalid end date!',
-    'cant_delete_self' => 'You can\'t delete yourself!',
 ];

@@ -103,9 +103,8 @@ class UserController extends Controller
         // find the user
         $user = User::findOrFail($id);
 
-        if ($user == Auth::user()) {
-            abort(400, __('messages.cant_delete_self'));
-        }
+        // delete the user's roles
+        $user->roles()->sync([]);
 
         // delete the user
         $user->delete();

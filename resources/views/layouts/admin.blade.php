@@ -20,17 +20,17 @@
 
     <section class="section">
         <div class="container">
-            <div class="level">
-                <div class="level-left">
-                    <h1 class="title">{{ $title }}</h1>
-                </div>
-
-                <div class="level-right">
-                    @yield('top-right')
-                </div>
-            </div>
-
             <div id="app">
+                <div class="level">
+                    <div class="level-left">
+                        <h1 class="title">{{ $title }}</h1>
+                    </div>
+
+                    <div class="level-right">
+                        @yield('top-right')
+                    </div>
+                </div>
+
                 @yield('content')
             </div>
         </div>

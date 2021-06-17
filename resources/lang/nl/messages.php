@@ -96,5 +96,4 @@ return [
     'invalid_login' => 'Ongeldige login!',
     'invalid_start_date' => 'Ongeldige startdatum!',
     'invalid_end_date' => 'Ongeldige einddatum!',
-    'cant_delete_self' => 'Je kunt niet jezelf verwijderen!',
 ];
