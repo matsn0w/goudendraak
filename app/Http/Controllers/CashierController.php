@@ -23,4 +23,9 @@ class CashierController extends Controller
     {
         return view('cashier.overview');
     }
+
+    public function orders()
+    {
+        return view('cashier.orders');
+    }
 }

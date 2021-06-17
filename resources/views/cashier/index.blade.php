@@ -13,6 +13,10 @@
                 <a class="button" href="{{ route('cashier.dishes') }}">{{ __('messages.dishes') }}</a>
             @endroles
 
+            @roles(['admin', 'manager', 'cashier', 'waiter'])
+                <a class="button" href="{{ route('cashier.orders') }}">{{ __('messages.orders') }}</a>
+            @endroles
+
             @roles(['admin', 'manager'])
                 <a class="button" href="{{ route('cashier.overview') }}">{{ __('messages.sales_overview') }}</a>
             @endroles

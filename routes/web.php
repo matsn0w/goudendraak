@@ -60,6 +60,7 @@ Route::name('admin.')->prefix('/admin')->middleware(['auth', 'role:admin,manager
 Route::name('cashier.')->prefix('/cashier')->middleware(['auth', 'role:admin,manager,cashier,waiter'])->group(function() {
     Route::get('/', [CashierController::class, 'index'])->name('index');
     Route::get('/payment', [CashierController::class, 'payment'])->middleware('role:admin,manager,cashier')->name('payment');
+    Route::get('/orders', [CashierController::class, 'orders'])->name('orders');
     Route::get('/dishes', [CashierController::class, 'dishes'])->name('dishes');
     Route::get('/overview', [CashierController::class, 'overview'])->middleware('role:admin,manager')->name('overview');
 });

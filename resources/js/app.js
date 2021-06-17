@@ -24,6 +24,7 @@ import UserEdit from './components/admin/users/UserEdit.vue';
 import Cashier from './components/Cashier.vue';
 import Sales from './components/Sales.vue';
 import Dishes from './components/Dishes.vue';
+import Orders from './components/Orders.vue';
 
 createApp({
     components: {
@@ -49,6 +50,7 @@ createApp({
         Cashier,
         Sales,
         Dishes,
+        Orders,
     }
 }).mount('#app');
 

@@ -56,6 +56,7 @@ return [
     'news' => 'News',
     'contact' => 'Contact',
     'order' => 'Order',
+    'orders' => 'Orders',
     'menu' => 'Menu',
     'dishes' => 'Dishes',
     'categories' => 'Categories',

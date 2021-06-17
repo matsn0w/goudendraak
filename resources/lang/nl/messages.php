@@ -57,6 +57,7 @@ return [
     'news' => 'Nieuws',
     'contact' => 'Contact',
     'order' => 'Bestellen',
+    'orders' => 'Bestellingen',
     'menu' => 'Menu',
     'dishes' => 'Gerechten',
     'categories' => 'Categorieën',
