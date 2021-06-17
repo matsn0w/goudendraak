@@ -59,6 +59,12 @@
                                 <input class="input is-small" type="text" v-model="item.notes">
                             </td>
                         </tr>
+
+                        <tr v-if="!order.items.length">
+                            <td colspan="5">
+                                <em>Nog geen items toegevoegd!</em>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

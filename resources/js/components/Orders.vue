@@ -18,7 +18,7 @@
                             <td>{{ sale.time }}</td>
                             <td>{{ euro(sale.financial.turnover) }}</td>
                             <td>
-                                <button class="button is-small" @click="showDetails(sale)">Details</button>
+                                <button class="button is-small is-pulled-right" @click="showDetails(sale)">Details</button>
                             </td>
                         </tr>
 
