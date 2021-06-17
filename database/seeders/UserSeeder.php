@@ -17,14 +17,28 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $cashier = Role::find(3);
+        // get all users
+        $users = User::all();
 
-        for ($code = 1; $code <= 5; $code++) {
-            User::create([
+        // init value
+        $highest = 0;
+
+
+        if ($users->count() > 0) {
+            // find highest existing number
+            $highest = $users->last()->code;
+        }
+
+        // add 5 users
+        for ($code = $highest + 1; $code <= $highest + 6; $code++) {
+            // find a random role
+            $role = Role::all()->random();
+
+            User::firstOrCreate([
                 'code' => $code,
                 'password' => Hash::make('geheim'),
                 'remember_token' => Str::random(10),
-            ])->roles()->save($cashier); // cashier
+            ])->roles()->save($role);
         }
     }
 }
