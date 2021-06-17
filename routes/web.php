@@ -33,7 +33,7 @@ Route::name('auth.')->prefix('/auth')->group(function() {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-Route::name('admin.')->prefix('/admin')->middleware(['auth', 'role:admin'])->group(function() {
+Route::name('admin.')->prefix('/admin')->middleware(['auth', 'role:admin,manager'])->group(function() {
     Route::get('/', [AdminController::class, 'index'])->name('index');
 
     Route::get('/news', [NewsController::class, 'admin'])->name('news.index');
@@ -53,8 +53,9 @@ Route::name('admin.')->prefix('/admin')->middleware(['auth', 'role:admin'])->gro
     Route::get('/users/{item}/edit', [UserController::class, 'edit'])->name('users.edit');
 });
 
-Route::name('cashier.')->prefix('/cashier')->middleware(['auth', 'role:admin,cashier'])->group(function() {
+Route::name('cashier.')->prefix('/cashier')->middleware(['auth', 'role:admin,manager,cashier,waiter'])->group(function() {
     Route::get('/', [CashierController::class, 'index'])->name('index');
+    Route::get('/payment', [CashierController::class, 'payment'])->middleware('role:admin,manager,cashier')->name('payment');
     Route::get('/dishes', [CashierController::class, 'dishes'])->name('dishes');
-    Route::get('/overview', [CashierController::class, 'overview'])->name('overview');
+    Route::get('/overview', [CashierController::class, 'overview'])->middleware('role:admin,manager')->name('overview');
 });

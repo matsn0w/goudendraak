@@ -40,8 +40,8 @@ class User extends Authenticatable
      *
      * @return bool
      */
-    public function hasRole(string $name)
+    public function hasRole(array $names)
     {
-        return $this->roles()->where('name', $name)->count() > 0;
+        return $this->roles()->whereIn('name', $names)->count() > 0;
     }
 }

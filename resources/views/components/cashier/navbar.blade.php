@@ -1,14 +1,24 @@
 <nav class="level header">
     <div class="level-left">
-        <figure class="level-item">
-            <img class="logo" src="{{ asset('dist/img/goodpay.png') }}" alt="GoodPay">
-        </figure>
+        <a href="{{ route('cashier.index') }}">
+            <figure class="level-item">
+                <img class="logo" src="{{ asset('dist/img/goodpay.png') }}" alt="GoodPay">
+            </figure>
+        </a>
     </div>
 
     <div class="level-right">
-        <a href="{{ route('cashier.index') }}" class="level-item button big">Kassa</a>
-        <a href="{{ route('cashier.dishes') }}" class="level-item button big">Gerechten</a>
-        <a href="{{ route('cashier.overview') }}" class="level-item button big">Verkoop Overzicht</a>
+        @roles(['admin', 'manager', 'cashier'])
+            <a href="{{ route('cashier.payment') }}" class="level-item button big">Kassa</a>
+        @endroles
+
+        @roles(['admin', 'manager', 'cashier', 'waiter'])
+            <a href="{{ route('cashier.dishes') }}" class="level-item button big">Gerechten</a>
+        @endroles
+
+        @roles(['admin', 'manager'])
+            <a href="{{ route('cashier.overview') }}" class="level-item button big">Verkoopoverzicht</a>
+        @endroles
 
         <form action="{{ route('auth.logout') }}" method="post">
             @csrf
