@@ -88,7 +88,7 @@ export default {
             categories: [],
             items: [],
             order: {
-                'items': [],
+                items: [],
             },
             response: {
                 visible: true,
@@ -147,7 +147,7 @@ export default {
 
         clearOrder() {
             this.order = {
-                'items': [],
+                items: [],
             };
 
             this.response = {
