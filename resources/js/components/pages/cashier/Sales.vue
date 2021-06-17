@@ -102,7 +102,7 @@
 </template>
 
 <script>
-import shared from '../shared';
+import shared from '../../../shared';
 
 export default {
     name: "Sales",
