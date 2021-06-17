@@ -59,7 +59,9 @@ class OrderController extends Controller
         $items = $validated['items'];
 
         // create the new order
-        $order = Order::create();
+        $order = Order::create([
+            'table' => $validated['table'],
+        ]);
 
         // attach items
         foreach ($items as $item) {

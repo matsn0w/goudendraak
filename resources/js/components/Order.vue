@@ -34,7 +34,7 @@
                 <template v-for="dish in itemsSearched" :key="dish.id">
                     <tr>
                         <td>{{ dish.number }}{{ dish.number_addition }}.</td>
-                        <td>{{ dish.name }}</td>
+                        <td v-html="dish.name"></td>
                         <td>{{ dish.category.name }}</td>
                         <td>{{ euro((dish.amount || 1) * dish.price) }}</td>
                     </tr>
