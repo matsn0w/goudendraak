@@ -4,15 +4,12 @@
     <form class="block" action="{{ route('lang.switch') }}" method="post">
         @csrf
 
-        @php
-            $locale = Session::get('locale');
-            $nl = $locale == 'nl' ? 'selected' : null;
-            $en = $locale == 'en' ? 'selected' : null;
-        @endphp
+        @php $locale = app()->getLocale();@endphp
 
         <select name="lang" id="lang">
-            <option value="nl" {{ $nl }}>Nederlands</option>
-            <option value="en" {{ $en }}>English</option>
+            @foreach (config('languages') as $code => $name)
+                <option value="{{ $code }}"{{ $code == $locale ? ' selected' : '' }}>{{ $name }}</option>
+            @endforeach
         </select>
 
         <button type="submit">Wissel</button>
