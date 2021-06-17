@@ -13,16 +13,6 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('news.index');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function admin()
-    {
         return view('admin.news.index');
     }
 

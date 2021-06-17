@@ -11,7 +11,7 @@ class MenuCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function admin()
+    public function index()
     {
         return view('admin.menu.categories.index');
     }

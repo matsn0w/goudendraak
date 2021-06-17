@@ -40,21 +40,11 @@ Route::name('auth.')->prefix('/auth')->group(function() {
 Route::name('admin.')->prefix('/admin')->middleware(['auth', 'role:admin,manager'])->group(function() {
     Route::get('/', [AdminController::class, 'index'])->name('index');
 
-    Route::get('/news', [NewsController::class, 'admin'])->name('news.index');
-    Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
-    Route::get('/news/{news}/edit', [NewsController::class, 'edit'])->name('news.edit');
-
-    Route::get('/menu', [MenuController::class, 'admin'])->name('menu.index');
-    Route::get('/menu/create', [MenuController::class, 'create'])->name('menu.create');
-    Route::get('/menu/{item}/edit', [MenuController::class, 'edit'])->name('menu.edit');
-
-    Route::get('/menu/categories', [MenuCategoryController::class, 'admin'])->name('menu.categories.index');
-    Route::get('/menu/categories/create', [MenuCategoryController::class, 'create'])->name('menu.categories.create');
-    Route::get('/menu/categories/{item}/edit', [MenuCategoryController::class, 'edit'])->name('menu.categories.edit');
-
-    Route::get('/users', [UserController::class, 'admin'])->name('users.index');
-    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-    Route::get('/users/{item}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::resource('/news', NewsController::class)->only('index', 'create', 'edit');
+    Route::resource('/menu', MenuController::class)->only('index', 'create', 'edit');
+    Route::name('menu')->resource('/menu/categories', MenuCategoryController::class)->only('index', 'create', 'edit');
+    Route::resource('/menu', MenuController::class)->only('index', 'create', 'edit');
+    Route::resource('/users', UserController::class)->only('index', 'create', 'edit');
 });
 
 Route::name('cashier.')->prefix('/cashier')->middleware(['auth', 'role:admin,manager,cashier,waiter'])->group(function() {
