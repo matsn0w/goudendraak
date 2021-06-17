@@ -1,5 +1,13 @@
 .outside-border {
-    box-shadow: 0px 0px 0px 10px $secondary;
+    box-shadow: 0px 0px 0px 10px $primary;
+}
+
+a {
+    color: $secondary;
+
+    &:hover {
+        color: $secondary;
+    }
 }
 
 a:not([class]):hover {
