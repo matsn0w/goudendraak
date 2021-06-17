@@ -26,28 +26,4 @@ Route::prefix('v1')->group(function() {
     Route::apiResource('orders', OrderController::class);
     Route::apiResource('users', UserController::class);
     Route::apiResource('roles', RoleController::class);
-
-    // Temp
-    Route::get('categories', function () {
-        return [
-            'data' => [
-                [
-                    'id' => 1,
-                    'name' => 'SOEP',
-                ],
-                [
-                    'id' => 2,
-                    'name' => 'VOORGERECHT',
-                ],
-                [
-                    'id' => 3,
-                    'name' => 'BAMI EN NASI GERECHTEN',
-                ],
-                [
-                    'id' => 999,
-                    'name' => '== PLEASE ADD A RESOURCE ===',
-                ]
-            ]
-        ];
-    });
 });
