@@ -39,7 +39,7 @@ return [
     'menu_article' => <<<'END'
         <p>Dit is onze menukaart. Klik om te vergroten.</p>
         <p>
-            <a class="has-text-black underline" href="{{ route('menu.download') }}">Download de menukaart als PDF</a>
+            <a class="has-text-black underline" href="/menu/download">Download de menukaart als PDF</a>
         </p>
     END,
 
