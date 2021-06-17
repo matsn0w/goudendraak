@@ -20,7 +20,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'code' => 'Ongeldige login!',
+            'code' => __('messages.invalid_login'),
         ]);
     }
 

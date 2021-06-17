@@ -1,5 +1,5 @@
 <div class="has-text-centered mt-3">
-    <a href="{{ route('contact') }}" class="is-link">Naar Contact</a>
+    <a href="{{ route('contact') }}" class="is-link">{{ __('messages.footer_to_contact') }}</a>
 
     <form class="block" action="{{ route('lang.switch') }}" method="post">
         @csrf
@@ -12,6 +12,6 @@
             @endforeach
         </select>
 
-        <button type="submit">Wissel</button>
+        <button type="submit">{{ __('messages.footer_change') }}</button>
     </form>
 </div>

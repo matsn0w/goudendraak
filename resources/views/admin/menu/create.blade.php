@@ -1,5 +1,5 @@
 @extends('layouts.admin', [
-    'title' => 'Menu item toevoegen'
+    'title' => __('messages.add_menu_item')
 ])
 
 @section('content')

@@ -30,7 +30,7 @@
                 <div class="level-item shrink">
                     <a href="#">
                         <marquee class="mx-3" behavior="scroll" direction="left">
-                            Welkom bij {{ config('app.name') }}. Klik op deze tekst om de aanbiedingen van deze week te zien!
+                            {{ __('messages.base_marquee', ['name' => config('app.name')]) }}
                         </marquee>
                     </a>
                 </div>

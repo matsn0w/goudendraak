@@ -1,5 +1,5 @@
 @extends('layouts.admin', [
-    'title' => 'Gebruiker toevoegen'
+    'title' => __('messages.add_user')
 ])
 
 @section('content')

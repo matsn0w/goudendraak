@@ -1,5 +1,5 @@
 @extends('layouts.admin', [
-    'title' => 'Gebruiker bewerken'
+    'title' => __('messages.edit_user')
 ])
 
 @section('content')

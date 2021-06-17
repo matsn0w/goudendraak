@@ -2,20 +2,19 @@
 
 @section('content')
     <div class="content">
-        <h1>Welkom!</h1>
-        <p>Wat wil je doen?</p>
+        {!! __('messages.cashier_body') !!}
 
         <div class="buttons">
             @roles(['admin', 'manager', 'cashier'])
-                <a class="button" href="{{ route('cashier.payment') }}">Kassa</a>
+                <a class="button" href="{{ route('cashier.payment') }}">{{ __('messages.cashier') }}</a>
             @endroles
 
             @roles(['admin', 'manager', 'cashier', 'waiter'])
-                <a class="button" href="{{ route('cashier.dishes') }}">Gerechten</a>
+                <a class="button" href="{{ route('cashier.dishes') }}">{{ __('messages.dishes') }}</a>
             @endroles
 
             @roles(['admin', 'manager'])
-                <a class="button" href="{{ route('cashier.overview') }}">Verkoopoverzicht</a>
+                <a class="button" href="{{ route('cashier.overview') }}">{{ __('messages.sales_overview') }}</a>
             @endroles
         </div>
     </div>

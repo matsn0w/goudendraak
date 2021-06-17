@@ -9,20 +9,20 @@
 
     <div class="level-right">
         @roles(['admin', 'manager', 'cashier'])
-            <a href="{{ route('cashier.payment') }}" class="level-item button big">Kassa</a>
+            <a href="{{ route('cashier.payment') }}" class="level-item button big">{{ __('messages.cashier') }}</a>
         @endroles
 
         @roles(['admin', 'manager', 'cashier', 'waiter'])
-            <a href="{{ route('cashier.dishes') }}" class="level-item button big">Gerechten</a>
+            <a href="{{ route('cashier.dishes') }}" class="level-item button big">{{ __('messages.dishes') }}</a>
         @endroles
 
         @roles(['admin', 'manager'])
-            <a href="{{ route('cashier.overview') }}" class="level-item button big">Verkoopoverzicht</a>
+            <a href="{{ route('cashier.overview') }}" class="level-item button big">{{ __('messages.sales_overview') }}</a>
         @endroles
 
         <form action="{{ route('auth.logout') }}" method="post">
             @csrf
-            <button class="level-item button big" type="submit">Log uit</a>
+            <button class="level-item button big" type="submit">{{ __('messages.log_out') }}</a>
         </form>
     </div>
 </nav>
