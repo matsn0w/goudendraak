@@ -8,7 +8,7 @@ return [
         <h4 class="is-size-2">Chinese Rijsttafel (2 personen)</h1>
         <p>Maak een keuze uit 3 van onderstaande keuzegerechten:</p>
 
-        <table>
+        <table class="special-offer">
             <tbody>
                 <tr>
                     <td>Koe Loe Yuk</td>
@@ -56,6 +56,7 @@ return [
     'home' => 'Home',
     'news' => 'Nieuws',
     'contact' => 'Contact',
+    'order' => 'Bestellen',
     'menu' => 'Menu',
     'dishes' => 'Gerechten',
     'categories' => 'Categorieën',

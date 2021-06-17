@@ -7,7 +7,7 @@ return [
         <h4 class="is-size-2">Chinese Rice Table (2 persons)</h1>
         <p>Choose from 3 of the following dishes:</p>
 
-        <table>
+        <table class="special-offer">
             <tbody>
                 <tr>
                     <td>Koe Loe Yuk</td>
@@ -55,6 +55,7 @@ return [
     'home' => 'Home',
     'news' => 'News',
     'contact' => 'Contact',
+    'order' => 'Order',
     'menu' => 'Menu',
     'dishes' => 'Dishes',
     'categories' => 'Categories',
