@@ -31,6 +31,7 @@
 <script>
 export default {
     name: "MenuCategoryCreate",
+
     data() {
       return {
         route: '/api/v1/menucategories',
@@ -41,6 +42,7 @@ export default {
         },
       };
     },
+
     methods: {
         save() {
             // submit form data

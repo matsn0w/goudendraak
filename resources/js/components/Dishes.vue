@@ -35,12 +35,14 @@ import shared from '../shared';
 
 export default {
     name: "Dishes",
+
     data() {
         return {
             items: [],
             search: '',
         }
     },
+
     computed: {
         itemsSearched() {
             const s = this.search?.toLowerCase();
@@ -63,11 +65,13 @@ export default {
             });
         },
     },
+
     mounted() {
         axios.get('/api/v1/menuitems')
             .then(res => res.data)
             .then(res => this.items = res.data);
     },
+
     created() {
         this.euro = shared.euro.bind(this);
     },

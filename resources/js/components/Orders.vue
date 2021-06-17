@@ -98,6 +98,6 @@ export default {
         showDetails(sale) {
             sale.showDetails = !sale.showDetails;
         },
-    }
+    },
 }
 </script>

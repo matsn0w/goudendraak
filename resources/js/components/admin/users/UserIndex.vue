@@ -23,12 +23,14 @@
 <script>
 export default {
     name: "UserIndex",
+
     data() {
         return {
             route: '/api/v1/users',
             users: [],
         }
     },
+
     mounted() {
         axios.get(this.route)
             .then(res => res.data)

@@ -109,6 +109,7 @@
 <script>
 export default {
     name: "MenuCreate",
+
     data() {
       return {
         route: '/api/v1/menuitems',
@@ -120,11 +121,13 @@ export default {
         },
       };
     },
+
     mounted() {
         axios.get('/api/v1/categories')
             .then(res => res.data)
             .then(res => this.categories = res.data);
     },
+
     methods: {
         save() {
             // submit form data

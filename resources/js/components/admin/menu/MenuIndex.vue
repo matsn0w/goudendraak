@@ -45,6 +45,7 @@ import shared from '../../../shared';
 
 export default {
     name: "MenuIndex",
+
     data() {
         return {
             route: '/api/v1/menuitems',
@@ -52,6 +53,7 @@ export default {
             search: '',
         }
     },
+
     computed: {
         itemsSearched() {
             const s = this.search?.toLowerCase();
@@ -74,11 +76,13 @@ export default {
             });
         },
     },
+
     mounted() {
         axios.get(this.route)
             .then(res => res.data)
             .then(res => this.items = res.data);
     },
+
     created() {
         this.euro = shared.euro.bind(this);
     },

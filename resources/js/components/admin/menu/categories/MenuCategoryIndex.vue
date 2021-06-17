@@ -36,6 +36,7 @@
 
 export default {
     name: "MenuCategoryIndex",
+
     data() {
         return {
             route: '/api/v1/menucategories',
@@ -43,6 +44,7 @@ export default {
             search: '',
         }
     },
+
     computed: {
         categoriesSearched() {
             const s = this.search?.toLowerCase();
@@ -56,6 +58,7 @@ export default {
             });
         },
     },
+
     mounted() {
         axios.get(this.route)
             .then(res => res.data)

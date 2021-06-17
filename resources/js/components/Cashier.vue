@@ -83,6 +83,7 @@ import shared from '../shared';
 
 export default {
     name: "Cashier",
+
     data() {
         return {
             categories: [],
@@ -98,6 +99,7 @@ export default {
             },
         }
     },
+
     mounted() {
         axios.get('/api/v1/menucategories')
             .then(res => res.data)
@@ -107,14 +109,17 @@ export default {
             .then(res => res.data)
             .then(res => this.items = res.data);
     },
+
     created() {
         this.euro = shared.euro.bind(this);
     },
+
     computed: {
         total() {
             return _.sum(this.order.items.map(item => item.amount * item.price));
         }
     },
+
     methods: {
         category_item(category_id) {
             return this.items.filter(item => item.category.id === category_id);
@@ -192,6 +197,6 @@ export default {
             // reset the form
             this.clearOrder();
         }
-    }
+    },
 }
 </script>

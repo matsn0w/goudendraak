@@ -62,6 +62,7 @@
 <script>
 export default {
     name: "UserCreate",
+
     data() {
       return {
         route: '/api/v1/users',
@@ -75,11 +76,13 @@ export default {
         },
       };
     },
+
     mounted() {
         axios.get('/api/v1/roles')
             .then(res => res.data)
             .then(res => this.roles = res.data);
     },
+
     methods: {
         save() {
             // submit form data

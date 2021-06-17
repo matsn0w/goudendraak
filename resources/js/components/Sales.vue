@@ -113,6 +113,7 @@ import shared from '../shared';
 
 export default {
     name: "Sales",
+
     data() {
         return {
             form: {
@@ -122,6 +123,7 @@ export default {
             sales: [],
         }
     },
+
     computed: {
         financial() {
             return {
@@ -131,9 +133,11 @@ export default {
             };
         },
     },
+
     created() {
         this.euro = shared.euro.bind(this);
     },
+
     methods: {
         generate() {
             // get sales
@@ -146,6 +150,6 @@ export default {
                 .then(res => res.data)
                 .then(res => this.sales = res.data);
         },
-    }
+    },
 }
 </script>

@@ -29,12 +29,14 @@
 <script>
 export default {
     name: "NewsIndex",
+
     data() {
         return {
             route: '/api/v1/newsitems',
             items: [],
         }
     },
+
     mounted() {
         axios.get(this.route)
             .then(res => res.data)

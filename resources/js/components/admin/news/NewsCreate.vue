@@ -45,6 +45,7 @@
 <script>
 export default {
     name: "NewsCreate",
+
     data() {
       return {
         route: '/api/v1/newsitems',
@@ -55,6 +56,7 @@ export default {
         },
       };
     },
+
     methods: {
         save(e) {
             e.preventDefault();

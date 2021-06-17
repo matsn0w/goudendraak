@@ -62,9 +62,11 @@
 <script>
 export default {
     name: "UserEdit",
+
     props: [
         'id'
     ],
+
     data() {
       return {
         route: `/api/v1/users/${this.id}`,
@@ -78,6 +80,7 @@ export default {
         },
       };
     },
+
     mounted() {
         axios.get('/api/v1/roles')
             .then(res => res.data)
@@ -90,6 +93,7 @@ export default {
                 this.form.checked = res.data.roles.map(role => role.id);
             });
     },
+
     methods: {
         save() {
             // submit form data

@@ -109,9 +109,11 @@
 <script>
 export default {
     name: "MenuEdit",
+
     props: [
         'id'
     ],
+
     data() {
       return {
         route: `/api/v1/menuitems/${this.id}`,
@@ -123,6 +125,7 @@ export default {
         },
       };
     },
+
     mounted() {
         axios.get('/api/v1/categories')
             .then(res => res.data)
@@ -135,6 +138,7 @@ export default {
                 this.form.category_id = res.data.category.id;
             });
     },
+
     methods: {
         save() {
             // submit form data

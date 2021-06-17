@@ -45,9 +45,11 @@
 <script>
 export default {
     name: "NewsEdit",
+
     props: [
         'id'
     ],
+
     data() {
       return {
         route: `/api/v1/newsitems/${this.id}`,
@@ -58,11 +60,13 @@ export default {
         },
       };
     },
+
     mounted() {
         axios.get(`${this.route}`)
             .then(res => res.data)
             .then(res => this.form = res.data);
     },
+
     methods: {
         save(e) {
             e.preventDefault();
