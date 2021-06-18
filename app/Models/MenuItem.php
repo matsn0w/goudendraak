@@ -31,6 +31,6 @@ class MenuItem extends Model
 
     public function allergens()
     {
-        return $this->belongsToMany(Allergen::class);
+        return $this->belongsToMany(Allergen::class, 'menuitem_allergen', 'item_id', 'allergen_id');
     }
 }
