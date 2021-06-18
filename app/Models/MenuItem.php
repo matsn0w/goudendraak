@@ -28,4 +28,9 @@ class MenuItem extends Model
     {
         return $this->belongsToMany(Order::class);
     }
+
+    public function allergens()
+    {
+        return $this->belongsToMany(Allergen::class);
+    }
 }

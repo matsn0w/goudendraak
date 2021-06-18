@@ -61,6 +61,7 @@ return [
     'dishes' => 'Dishes',
     'categories' => 'Categories',
     'menu_categories' => 'Menu categories',
+    'allergens' => 'Allergens',
     'users' => 'Users',
     'cashier' => 'Cashier',
     'sales_overview' => 'Sales overview',
@@ -89,6 +90,9 @@ return [
 
     'add_menu_category' => 'Add menu category',
     'edit_menu_category' => 'Edit menu category',
+
+    'add_allergen' => 'Allergeen toevoegen',
+    'edit_allergen' => 'Allergeen bewerken',
 
     'new' => 'New',
 

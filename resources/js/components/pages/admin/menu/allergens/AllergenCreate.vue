@@ -20,7 +20,7 @@
             </div>
 
             <div class="control">
-                <a href="/admin/menu/categories" class="button">Terug</a>
+                <a href="/admin/menu/allergens" class="button">Terug</a>
             </div>
         </div>
 
@@ -30,15 +30,11 @@
 
 <script>
 export default {
-    name: "MenuCategoryEdit",
-
-    props: [
-        'id'
-    ],
+    name: "AllergensCreate",
 
     data() {
       return {
-        route: `/api/v1/menucategories/${this.id}`,
+        route: '/api/v1/allergens',
         form: {},
         response: {
             message: '',
@@ -47,25 +43,17 @@ export default {
       };
     },
 
-    mounted() {
-        axios.get(`${this.route}`)
-            .then(res => res.data)
-            .then(res => {
-                this.form = res.data;
-            });
-    },
-
     methods: {
         save() {
             // submit form data
-            axios.put(this.route, this.form)
+            axios.post(this.route, this.form)
                 .then(res => {
-                    if (res.status == 200) {
-                        // update the form
-                        this.form = res.data.data;
+                    if (res.status == 201) {
+                        // reset the form
+                        this.form = {};
 
                         // show a success message
-                        this.response.message = 'Item updated successfully!';
+                        this.response.message = 'Allergen created successfully!';
                         this.response.errors = [];
                     }
                 })

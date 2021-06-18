@@ -62,6 +62,7 @@ return [
     'dishes' => 'Gerechten',
     'categories' => 'Categorieën',
     'menu_categories' => 'Menu-categorieën',
+    'allergens' => 'Allergenen',
     'users' => 'Gebruikers',
     'cashier' => 'Kassa',
     'sales_overview' => 'Verkoopoverzicht',
@@ -90,6 +91,9 @@ return [
 
     'add_menu_category' => 'Menu-categorie toevoegen',
     'edit_menu_category' => 'Menu-categorie bewerken',
+
+    'add_allergen' => 'Allergeen toevoegen',
+    'edit_allergen' => 'Allergeen bewerken',
 
     'new' => 'Nieuw',
 

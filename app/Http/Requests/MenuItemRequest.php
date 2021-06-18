@@ -43,7 +43,7 @@ class MenuItemRequest extends FormRequest
                     'spiciness' => ['required', 'integer', 'min:0', 'max:3'],
                 ];
 
-                default:
+            default:
                 return [
                     'name' => ['required'],
                     'number' => [
