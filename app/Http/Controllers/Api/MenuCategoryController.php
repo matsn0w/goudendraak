@@ -22,7 +22,6 @@ class MenuCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\MenuCategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(MenuCategoryRequest $request)
@@ -39,7 +38,8 @@ class MenuCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -50,8 +50,8 @@ class MenuCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\MenuCategoryRequest  $request
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(MenuCategoryRequest $request, $id)
@@ -71,7 +71,8 @@ class MenuCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

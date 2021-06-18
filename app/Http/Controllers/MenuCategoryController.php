@@ -29,7 +29,6 @@ class MenuCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit(int $id)
@@ -37,7 +36,7 @@ class MenuCategoryController extends Controller
         $category = MenuCategory::findOrFail($id);
 
         return view('admin.menu.categories.edit', [
-            'category' => $category
+            'category' => $category,
         ]);
     }
 }

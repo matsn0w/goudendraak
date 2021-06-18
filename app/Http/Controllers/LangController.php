@@ -13,7 +13,7 @@ class LangController extends Controller
             'lang' => ['required'],
         ]);
 
-        if (! array_key_exists($validated['lang'], config('languages'))) {
+        if (!array_key_exists($validated['lang'], config('languages'))) {
             abort(400);
         }
 

@@ -22,7 +22,6 @@ class AllergenController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\AllergenRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(AllergenRequest $request)
@@ -39,7 +38,8 @@ class AllergenController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -50,8 +50,8 @@ class AllergenController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\AllergenRequest  $request
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(AllergenRequest $request, $id)
@@ -71,7 +71,8 @@ class AllergenController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

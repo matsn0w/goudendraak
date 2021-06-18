@@ -12,8 +12,6 @@ class Localization
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
@@ -22,7 +20,7 @@ class Localization
         $lang = Session::get('locale') ?? config('app.locale');
 
         // check if the session has a language specified
-        if (! Session::has('locale')) {
+        if (!Session::has('locale')) {
             // store the default locale in the session
             Session::put('locale', $lang);
         }

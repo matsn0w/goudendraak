@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
                 DB::connection('mysql2')->getPdo();
             } catch (Exception $e) {
                 $this->command->error('Could not connect to the legacy database. Please check your configuration. The old database is not migrated.');
+
                 return;
             }
 
