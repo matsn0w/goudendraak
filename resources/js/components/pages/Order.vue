@@ -28,6 +28,7 @@
                 <th>Naam</th>
                 <th>Categorie</th>
                 <th>Pittigheid</th>
+                <th>Allergenen</th>
                 <th>Prijs</th>
                 <th></th>
             </thead>
@@ -39,6 +40,7 @@
                         <td v-html="dish.name"></td>
                         <td>{{ dish.category.name }}</td>
                         <td><small>{{ '🌶️'.repeat(dish.spiciness) }}</small></td>
+                        <td>{{ dish.allergens.map(allergen => allergen.name).join(', ') }}</td>
                         <td>{{ euro((dish.amount || 1) * dish.price) }}</td>
                         <td>
                             <button class="button is-small" @click="dish.showDetails = !dish.showDetails" :disabled="waiting">Bestellen</button>
