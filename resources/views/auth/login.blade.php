@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
-    <form action="{{ route('auth.login') }}" method="post">
+    <form action="{{ route('auth.login') }}" method="post" class="login">
         @csrf
 
         <div class="field">
@@ -30,7 +30,7 @@
 
         <div class="field is-grouped">
             <div class="control">
-                <button type="submit" class="button is-primary">{{ __('messages.login') }}</button>
+                <button type="submit" class="button">{{ __('messages.login') }}</button>
             </div>
         </div>
     </form>

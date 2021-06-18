@@ -14,6 +14,8 @@
                 <th>Nummer</th>
                 <th>Prijs</th>
                 <th>Categorie</th>
+                <th>Pittigheid</th>
+                <th>Allergenen</th>
                 <th>Omschrijving</th>
             </tr>
         </thead>
@@ -24,6 +26,8 @@
                 <td>{{ item.number }}{{ item.number_addition }}</td>
                 <td>{{ euro(item.price) }}</td>
                 <td>{{ item.category.name }}</td>
+                <td><small>{{ '🌶️'.repeat(item.spiciness) }}</small></td>
+                <td>{{ item.allergens.map(allergen => allergen.name).join(', ') }}</td>
                 <td>{{ item.description }}</td>
             </tr>
         </tbody>

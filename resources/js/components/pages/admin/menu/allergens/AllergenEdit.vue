@@ -20,7 +20,7 @@
             </div>
 
             <div class="control">
-                <a href="/admin/menu/categories" class="button">Terug</a>
+                <a href="/admin/menu/allergens" class="button">Terug</a>
             </div>
         </div>
 
@@ -30,7 +30,7 @@
 
 <script>
 export default {
-    name: "MenuCategoryEdit",
+    name: "AllergensEdit",
 
     props: [
         'id'
@@ -38,7 +38,7 @@ export default {
 
     data() {
       return {
-        route: `/api/v1/menucategories/${this.id}`,
+        route: `/api/v1/allergens/${this.id}`,
         form: {},
         response: {
             message: '',
@@ -65,7 +65,7 @@ export default {
                         this.form = res.data.data;
 
                         // show a success message
-                        this.response.message = 'Item updated successfully!';
+                        this.response.message = 'Allergen updated successfully!';
                         this.response.errors = [];
                     }
                 })

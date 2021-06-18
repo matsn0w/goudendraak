@@ -17,6 +17,10 @@ import MenuCategoryIndex from './components/pages/admin/menu/categories/MenuCate
 import MenuCategoryCreate from './components/pages/admin/menu/categories/MenuCategoryCreate.vue';
 import MenuCategoryEdit from './components/pages/admin/menu/categories/MenuCategoryEdit.vue';
 
+import AllergenIndex from './components/pages/admin/menu/allergens/AllergenIndex.vue';
+import AllergenCreate from './components/pages/admin/menu/allergens/AllergenCreate.vue';
+import AllergenEdit from './components/pages/admin/menu/allergens/AllergenEdit.vue';
+
 import UserIndex from './components/pages/admin/users/UserIndex.vue';
 import UserCreate from './components/pages/admin/users/UserCreate.vue';
 import UserEdit from './components/pages/admin/users/UserEdit.vue';
@@ -44,6 +48,10 @@ createApp({
         MenuCategoryIndex,
         MenuCategoryCreate,
         MenuCategoryEdit,
+
+        AllergenIndex,
+        AllergenCreate,
+        AllergenEdit,
 
         UserIndex,
         UserCreate,

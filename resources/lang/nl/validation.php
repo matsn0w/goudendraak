@@ -132,6 +132,7 @@ return [
     ],
     'attributes'           => [
         'address'               => 'adres',
+        'allergens'             => 'allergenen',
         'age'                   => 'leeftijd',
         'amount'                => 'aantal',
         'available'             => 'beschikbaar',
@@ -169,6 +170,7 @@ return [
         'second'                => 'seconde',
         'sex'                   => 'geslacht',
         'size'                  => 'grootte',
+        'spiciness'             => 'pittigheid',
         'street'                => 'straatnaam',
         'student'               => 'student',
         'subject'               => 'onderwerp',

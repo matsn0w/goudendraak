@@ -98,3 +98,13 @@ iframe {
     width: 100%;
     height: 600px;
 }
+
+.login {
+    label {
+        color: $secondary;
+    }
+
+    .help {
+        color: $secondary;
+    }
+}

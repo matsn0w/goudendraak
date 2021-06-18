@@ -92,6 +92,37 @@
             </div>
         </div>
 
+        <div class="field">
+            <label class="label" for="spiciness">Pittigheid</label>
+
+            <div class="control">
+                <input class="input" type="number" min="0" step="1" name="spiciness" id="spiciness" v-model="form.spiciness">
+            </div>
+
+            <div class="content help is-danger">
+                <ul v-if="response.errors.spiciness !== undefined">
+                    <li v-for="error in response.errors.spiciness">{{ error }}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label" for="allergens">Allergenen</label>
+
+            <div class="control" v-for="allergen in allergens" :key="allergen.id">
+                <label class="checkbox">
+                    <input type="checkbox" name="allergens[]" :value="allergen.id" v-model="form.checked">
+                    {{ allergen.name }}
+                </label>
+            </div>
+
+            <div class="content help is-danger">
+                <ul v-if="response.errors.checked !== undefined">
+                    <li v-for="error in response.errors.checked">{{ error }}</li>
+                </ul>
+            </div>
+        </div>
+
         <div class="field is-grouped">
             <div class="control">
                 <button type="submit" class="button is-primary">Opslaan</button>
@@ -113,8 +144,11 @@ export default {
     data() {
       return {
         route: '/api/v1/menuitems',
-        form: {},
+        form: {
+            checked: [],
+        },
         categories: [],
+        allergens: [],
         response: {
             message: '',
             errors: [],
@@ -123,9 +157,13 @@ export default {
     },
 
     mounted() {
-        axios.get('/api/v1/categories')
+        axios.get('/api/v1/menucategories')
             .then(res => res.data)
             .then(res => this.categories = res.data);
+
+        axios.get('/api/v1/allergens')
+            .then(res => res.data)
+            .then(res => this.allergens = res.data);
     },
 
     methods: {
@@ -135,7 +173,9 @@ export default {
                 .then(res => {
                     if (res.status == 201) {
                         // reset the form
-                        this.form = {};
+                        this.form = {
+                            checked: [],
+                        };
 
                         // show a success message
                         this.response.message = 'Menu item created successfully!';

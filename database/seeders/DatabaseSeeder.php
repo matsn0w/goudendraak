@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         // initial data
         $this->call(RoleSeeder::class);
+        $this->call(AllergenSeeder::class);
 
         $migrate = $this->command->confirm('Do you want to migrate the old database?');
 

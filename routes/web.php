@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CashierController;
 use App\Http\Controllers\LangController;
-use App\Http\Controllers\MenuCategoryController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CashierController;
+use App\Http\Controllers\AllergenController;
+use App\Http\Controllers\MenuCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,7 @@ Route::name('admin.')->prefix('/admin')->middleware(['auth', 'role:admin,manager
     Route::resource('/news', NewsController::class)->only('index', 'create', 'edit');
     Route::resource('/menu', MenuController::class)->only('index', 'create', 'edit');
     Route::name('menu')->resource('/menu/categories', MenuCategoryController::class)->only('index', 'create', 'edit');
+    Route::name('menu')->resource('/menu/allergens', AllergenController::class)->only('index', 'create', 'edit');
     Route::resource('/menu', MenuController::class)->only('index', 'create', 'edit');
     Route::resource('/users', UserController::class)->only('index', 'create', 'edit');
 });

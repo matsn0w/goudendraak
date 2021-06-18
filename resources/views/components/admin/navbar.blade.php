@@ -23,6 +23,7 @@
                     <div class="navbar-dropdown">
                         <a class="navbar-item" href="{{ route('admin.menu.index') }}">{{ __('messages.dishes') }}</a>
                         <a class="navbar-item" href="{{ route('admin.menu.categories.index') }}">{{ __('messages.categories') }}</a>
+                        <a class="navbar-item" href="{{ route('admin.menu.allergens.index') }}">{{ __('messages.allergens') }}</a>
                     </div>
                 </div>
 

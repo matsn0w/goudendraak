@@ -15,6 +15,8 @@
                 <th>Prijs</th>
                 <th>Categorie</th>
                 <th>Omschrijving</th>
+                <th>Pittigheid</th>
+                <th>Allergenen</th>
                 <th></th>
             </tr>
         </thead>
@@ -26,6 +28,8 @@
                 <td>{{ euro(item.price) }}</td>
                 <td>{{ item.category.name }}</td>
                 <td>{{ item.description }}</td>
+                <td><small>{{ '🌶️'.repeat(item.spiciness) }}</small></td>
+                <td>{{ item.allergens.map(allergen => allergen.name).join(', ') }}</td>
                 <td>
                     <a :href="`/admin/menu/${item.id}/edit`">Bewerken</a>
                 </td>
