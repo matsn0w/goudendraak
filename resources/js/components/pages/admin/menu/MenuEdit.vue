@@ -106,6 +106,23 @@
             </div>
         </div>
 
+        <div class="field">
+            <label class="label" for="allergens">Allergenen</label>
+
+            <div class="control" v-for="allergen in allergens" :key="allergen.id">
+                <label class="checkbox">
+                    <input type="checkbox" name="allergens[]" :value="allergen.id" v-model="form.checked">
+                    {{ allergen.name }}
+                </label>
+            </div>
+
+            <div class="content help is-danger">
+                <ul v-if="response.errors.checked !== undefined">
+                    <li v-for="error in response.errors.checked">{{ error }}</li>
+                </ul>
+            </div>
+        </div>
+
         <div class="field is-grouped">
             <div class="control">
                 <button type="submit" class="button is-primary">Opslaan</button>
@@ -131,8 +148,11 @@ export default {
     data() {
       return {
         route: `/api/v1/menuitems/${this.id}`,
-        form: {},
+        form: {
+            checked: [],
+        },
         categories: [],
+        allergens: [],
         response: {
             message: '',
             errors: [],
@@ -145,11 +165,16 @@ export default {
             .then(res => res.data)
             .then(res => this.categories = res.data);
 
+        axios.get('/api/v1/allergens')
+            .then(res => res.data)
+            .then(res => this.allergens = res.data);
+
         axios.get(`${this.route}`)
             .then(res => res.data)
             .then(res => {
                 this.form = res.data;
                 this.form.category_id = res.data.category.id;
+                this.form.checked = res.data.allergens.map(allergen => allergen.id);
             });
     },
 
@@ -162,6 +187,7 @@ export default {
                         // update the form
                         this.form = res.data.data;
                         this.form.category_id = res.data.data.category.id;
+                        this.form.checked = res.data.data.allergens.map(allergen => allergen.id);
 
                         // show a success message
                         this.response.message = 'Item updated successfully!';

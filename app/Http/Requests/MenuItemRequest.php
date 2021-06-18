@@ -41,6 +41,8 @@ class MenuItemRequest extends FormRequest
                     'price' => ['sometimes', 'numeric', 'min:0'],
                     'description' => ['nullable'],
                     'spiciness' => ['required', 'integer', 'min:0', 'max:3'],
+                    'checked' => ['array', 'nullable'],
+                    'checked.*' => ['integer', 'exists:allergens,id'],
                 ];
 
             default:
@@ -59,6 +61,8 @@ class MenuItemRequest extends FormRequest
                     'price' => ['required', 'numeric', 'min:0'],
                     'description' => ['nullable'],
                     'spiciness' => ['required', 'integer', 'min:0', 'max:3'],
+                    'checked' => ['array', 'nullable'],
+                    'checked.*' => ['integer', 'exists:allergens,id'],
                 ];
         }
     }

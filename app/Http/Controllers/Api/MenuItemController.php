@@ -40,7 +40,7 @@ class MenuItemController extends Controller
         // synchronize the item's allergens
         $item->allergens()->sync($allergens);
 
-        return new MenuItemResource($item);
+        return new MenuItemResource($item->load(['category', 'allergens']));
     }
 
     /**
@@ -78,7 +78,7 @@ class MenuItemController extends Controller
         // synchronize the item's allergens
         $item->allergens()->sync($allergens);
 
-        return new MenuItemResource($item);
+        return new MenuItemResource($item->load(['category', 'allergens']));
     }
 
     /**
