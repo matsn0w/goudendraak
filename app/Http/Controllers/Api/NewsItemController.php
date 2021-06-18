@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\NewsItem;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsItemRequest;
 use App\Http\Resources\NewsItemResource;
+use App\Models\NewsItem;
 
 class NewsItemController extends Controller
 {
@@ -22,7 +22,6 @@ class NewsItemController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\NewsItemRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(NewsItemRequest $request)
@@ -39,7 +38,8 @@ class NewsItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -50,8 +50,6 @@ class NewsItemController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\NewsItemRequest  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(NewsItemRequest $request, int $id)
@@ -71,7 +69,6 @@ class NewsItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(int $id)

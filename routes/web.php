@@ -1,15 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AllergenController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CashierController;
 use App\Http\Controllers\LangController;
+use App\Http\Controllers\MenuCategoryController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CashierController;
-use App\Http\Controllers\AllergenController;
-use App\Http\Controllers\MenuCategoryController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,13 +32,13 @@ Route::get('/menu/download', [MenuController::class, 'download'])->name('menu.do
 
 Route::post('/lang', [LangController::class, 'switch'])->name('lang.switch');
 
-Route::name('auth.')->prefix('/auth')->group(function() {
+Route::name('auth.')->prefix('/auth')->group(function () {
     Route::view('/login', 'auth.login')->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-Route::name('admin.')->prefix('/admin')->middleware(['auth', 'role:admin,manager'])->group(function() {
+Route::name('admin.')->prefix('/admin')->middleware(['auth', 'role:admin,manager'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
 
     Route::resource('/news', NewsController::class)->only('index', 'create', 'edit');
@@ -49,7 +49,7 @@ Route::name('admin.')->prefix('/admin')->middleware(['auth', 'role:admin,manager
     Route::resource('/users', UserController::class)->only('index', 'create', 'edit');
 });
 
-Route::name('cashier.')->prefix('/cashier')->middleware(['auth', 'role:admin,manager,cashier,waiter'])->group(function() {
+Route::name('cashier.')->prefix('/cashier')->middleware(['auth', 'role:admin,manager,cashier,waiter'])->group(function () {
     Route::get('/', [CashierController::class, 'index'])->name('index');
     Route::get('/payment', [CashierController::class, 'payment'])->middleware('role:admin,manager,cashier')->name('payment');
     Route::get('/orders', [CashierController::class, 'orders'])->name('orders');

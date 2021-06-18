@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -23,14 +23,13 @@ class UserSeeder extends Seeder
         // init value
         $highest = 0;
 
-
         if ($users->count() > 0) {
             // find highest existing number
             $highest = $users->last()->code;
         }
 
         // add 5 users
-        for ($code = $highest + 1; $code <= $highest + 6; $code++) {
+        for ($code = $highest + 1; $code <= $highest + 6; ++$code) {
             // find a random role
             $role = Role::all()->random();
 

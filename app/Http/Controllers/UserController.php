@@ -29,7 +29,8 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $userItem
+     * @param \App\Models\User $userItem
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(int $id)
@@ -37,7 +38,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         return view('admin.users.edit', [
-            'user' => $user
+            'user' => $user,
         ]);
     }
 }

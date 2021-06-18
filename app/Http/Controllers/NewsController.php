@@ -29,7 +29,8 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\NewsItem  $newsItem
+     * @param \App\Models\NewsItem $newsItem
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(int $id)
@@ -37,7 +38,7 @@ class NewsController extends Controller
         $item = NewsItem::findOrFail($id);
 
         return view('admin.news.edit', [
-            'ítem' => $item
+            'ítem' => $item,
         ]);
     }
 }

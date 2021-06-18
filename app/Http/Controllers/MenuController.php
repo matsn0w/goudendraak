@@ -31,7 +31,8 @@ class MenuController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\MenuItem  $menuItem
+     * @param \App\Models\MenuItem $menuItem
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(int $id)
@@ -39,7 +40,7 @@ class MenuController extends Controller
         $item = MenuItem::findOrFail($id);
 
         return view('admin.menu.edit', [
-            'ítem' => $item
+            'ítem' => $item,
         ]);
     }
 

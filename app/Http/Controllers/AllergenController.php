@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Allergen;
-use App\Models\MenuCategory;
-use App\Models\MenuItem;
-use Barryvdh\DomPDF\Facade as PDF;
 
 class AllergenController extends Controller
 {
@@ -32,7 +29,6 @@ class AllergenController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit(int $id)
@@ -40,7 +36,7 @@ class AllergenController extends Controller
         $allergen = Allergen::findOrFail($id);
 
         return view('admin.menu.allergens.edit', [
-            'allergen' => $allergen
+            'allergen' => $allergen,
         ]);
     }
 }
