@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use Carbon\Carbon;
-use App\Models\Role;
-use App\Models\User;
 use App\Models\MenuCategory;
 use App\Models\Order;
+use App\Models\Role;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -34,7 +34,7 @@ class DataMigrationSeeder extends Seeder
             ]);
 
             // assign admin roles
-            if ($user->isAdmin == 1) {
+            if (1 == $user->isAdmin) {
                 DB::connection('mysql')->table('role_user')->insert([
                     'role_id' => Role::where('name', 'admin')->first()->id,
                     'user_id' => User::where('code', $user->id)->first()->id,
@@ -48,7 +48,7 @@ class DataMigrationSeeder extends Seeder
 
         foreach ($menu as $item) {
             // check if the category is already present
-            if (MenuCategory::where('name', $item->soortgerecht)->first() != null) {
+            if (null != MenuCategory::where('name', $item->soortgerecht)->first()) {
                 continue;
             }
 
@@ -86,7 +86,7 @@ class DataMigrationSeeder extends Seeder
 
         foreach ($sales as $item) {
             // build a custom array, group items by order date
-            if (! isset($orders[$item->saleDate])) {
+            if (!isset($orders[$item->saleDate])) {
                 $orders[$item->saleDate] = [$item];
             } else {
                 array_push($orders[$item->saleDate], $item);

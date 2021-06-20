@@ -17,15 +17,17 @@
 <script>
 export default {
     name: "News",
+
     data() {
         return {
             items: [],
         }
     },
+
     mounted() {
         axios.get('/api/v1/newsitems')
             .then(res => res.data)
             .then(res => this.items = res.data);
-    }
+    },
 }
 </script>

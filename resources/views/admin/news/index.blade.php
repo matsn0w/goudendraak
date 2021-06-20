@@ -1,5 +1,13 @@
-@extends('layouts.base')
+@extends('layouts.admin', [
+    'title' => __('messages.news')
+])
+
+@section('top-right')
+    <a class="button is-primary" href="{{ route('admin.news.create') }}">{{ __('messages.new') }}</a>
+@endsection
 
 @section('content')
-    <News-Index></News-Index>
+    <div class="box">
+        <News-Index></News-Index>
+    </div>
 @endsection

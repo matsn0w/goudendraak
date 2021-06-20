@@ -12,9 +12,11 @@ class MenuItem extends Model
     protected $fillable = [
         'name',
         'number',
+        'number_addition',
         'category_id',
         'price',
         'description',
+        'spiciness',
     ];
 
     public function category()
@@ -25,5 +27,10 @@ class MenuItem extends Model
     public function orders()
     {
         return $this->belongsToMany(Order::class);
+    }
+
+    public function allergens()
+    {
+        return $this->belongsToMany(Allergen::class, 'menuitem_allergen', 'item_id', 'allergen_id');
     }
 }

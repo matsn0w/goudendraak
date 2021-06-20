@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Validation Language Lines
@@ -134,8 +133,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'items' => [
+            'required' => 'Add at least one item!',
+        ],
+        'checked' => [
+            'required' => 'Add at leaste one role!',
         ],
     ],
 
@@ -151,5 +153,4 @@ return [
     */
 
     'attributes' => [],
-
 ];

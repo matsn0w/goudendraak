@@ -11,12 +11,13 @@ class Order extends Model
 
     protected $fillable = [
         'items',
+        'table',
     ];
 
     public function items()
     {
         return $this->belongsToMany(MenuItem::class, 'order_item', 'order_id', 'item_id')
-            ->withPivot('amount');
+            ->withPivot(['amount', 'notes']);
     }
 
     public function scopeDate($query, $start = null, $end = null)

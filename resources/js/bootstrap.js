@@ -10,6 +10,12 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+// get current language
+const lang = document.querySelector('html').lang;
+
+// set global axios language
+axios.defaults.headers.common['Accept-Language'] = lang;
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

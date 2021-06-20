@@ -3,22 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function login(UserRequest $request)
+    public function login(Request $request)
     {
-        $credentials = $request->validated();
+        $credentials = $request->validate([
+            'code' => ['required', 'integer'],
+            'password' => ['required'],
+        ]);
 
         if (Auth::attempt($credentials, false)) {
             $request->session()->regenerate();
-            return redirect()->route('admin.index');
+
+            return redirect()->intended();
         }
 
         return back()->withErrors([
-            'code' => 'Ongeldige login!',
+            'code' => __('messages.invalid_login'),
         ]);
     }
 

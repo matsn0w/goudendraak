@@ -53,51 +53,44 @@
                 </thead>
 
                 <tbody>
-                    <tr v-for="sale in sales">
-                        <td>{{ sale.date }}</td>
-                        <td>{{ euro(sale.financial.turnover) }}</td>
-                        <td>{{ euro(sale.financial.tax) }}</td>
-                        <td>{{ euro(sale.financial.profit) }}</td>
-                        <td>
-                            <div class="dropdown is-hoverable">
-                                <div class="dropdown-trigger">
-                                    <button class="button is-small" aria-haspopup="true" aria-controls="dropdown-menu2">Details</button>
-                                </div>
+                    <template v-for="sale in sales" :key="sale.id">
+                        <tr>
+                            <td>{{ sale.date }} {{ sale.time }}</td>
+                            <td>{{ euro(sale.financial.turnover) }}</td>
+                            <td>{{ euro(sale.financial.tax) }}</td>
+                            <td>{{ euro(sale.financial.profit) }}</td>
+                            <td>
+                                <button class="button is-small is-pulled-right" @click="showDetails(sale)">Details</button>
+                            </td>
+                        </tr>
 
-                                <div class="dropdown-menu" id="dropdown-menu2" role="menu">
-                                    <div class="dropdown-content">
-                                        <div class="dropdown-item">
-                                            <p>Tijdstip: {{ sale.time }}</p>
-                                        </div>
+                        <tr :hidden="!sale.showDetails">
+                            <td></td>
+                            <td colspan="4">
+                                <table class="table is-narrow is-fullwidth">
+                                    <thead>
+                                        <tr>
+                                            <th>Naam</th>
+                                            <th>Nummer</th>
+                                            <th>Prijs</th>
+                                            <th>Aantal</th>
+                                            <th>Subtotaal</th>
+                                        </tr>
+                                    </thead>
 
-                                        <div class="dropdown-item">
-                                            <table class="table is-narrow is-fullwidth">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Naam</th>
-                                                        <th>Nummer</th>
-                                                        <th>Prijs</th>
-                                                        <th>Aantal</th>
-                                                        <th>Subtotaal</th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                    <tr v-for="item in sale.items">
-                                                        <td>{{ item.name }}</td>
-                                                        <td>{{ item.number }}{{ item.number_addition }}</td>
-                                                        <td>{{ euro(item.price) }}</td>
-                                                        <td>{{ item.amount }}</td>
-                                                        <td>{{ euro(item.amount * item.price) }}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                                    <tbody>
+                                        <tr v-for="item in sale.items">
+                                            <td>{{ item.name }}</td>
+                                            <td>{{ item.number }}{{ item.number_addition }}</td>
+                                            <td>{{ euro(item.price) }}</td>
+                                            <td>{{ item.amount }}</td>
+                                            <td>{{ euro(item.amount * item.price) }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </template>
 
                     <tr v-if="sales.length === 0">
                         <td colspan="4"><em>Maak eerst een overzicht!</em></td>
@@ -109,8 +102,11 @@
 </template>
 
 <script>
+import shared from '../../../shared';
+
 export default {
     name: "Sales",
+
     data() {
         return {
             form: {
@@ -120,6 +116,7 @@ export default {
             sales: [],
         }
     },
+
     computed: {
         financial() {
             return {
@@ -129,16 +126,12 @@ export default {
             };
         },
     },
+
+    created() {
+        this.euro = shared.euro.bind(this);
+    },
+
     methods: {
-        euro(price) {
-            let f = new Intl.NumberFormat('nl-NL', {
-                style: 'currency',
-                currency: 'EUR',
-            });
-
-            return f.format(price);
-        },
-
         generate() {
             // get sales
             axios.get('/api/v1/orders', {
@@ -150,6 +143,10 @@ export default {
                 .then(res => res.data)
                 .then(res => this.sales = res.data);
         },
-    }
+
+        showDetails(sale) {
+            sale.showDetails = !sale.showDetails;
+        },
+    },
 }
 </script>

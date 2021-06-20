@@ -1,8 +1,8 @@
 @extends('layouts.base')
 
 @section('content')
-    <article class="content">
-        <p>Dit is onze menukaart. Klik om te vergroten.</p>
+    <article class="content has-text-centered">
+        {!! __('messages.menu_article') !!}
 
         <figure class="image">
             <a href="{{ asset('dist/img/menu_1.jpg') }}" target="_blank">

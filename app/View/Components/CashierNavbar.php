@@ -13,7 +13,6 @@ class CashierNavbar extends Component
      */
     public function __construct()
     {
-        //
     }
 
     /**

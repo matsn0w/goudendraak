@@ -13,7 +13,7 @@ class CreateMenuItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('menu_categories', function(Blueprint $table) {
+        Schema::create('menu_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
             $table->timestamps();
@@ -27,6 +27,7 @@ class CreateMenuItemsTable extends Migration
             $table->foreignId('category_id')->nullable()->constrained('menu_categories');
             $table->double('price');
             $table->mediumText('description')->nullable();
+            $table->tinyInteger('spiciness')->min(0)->max(3)->default(0);
             $table->timestamps();
 
             $table->unique(['number', 'number_addition']);

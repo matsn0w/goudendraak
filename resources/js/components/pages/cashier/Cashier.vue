@@ -23,7 +23,7 @@
                                 <td>{{ item.name }} <small><em>{{ item.description }}</em></small></td>
                                 <td>{{ euro(item.price) }}</td>
                                 <td>
-                                    <button class="is-pulled-right" type="button" @click="addItem(item)">Toevoegen</button>
+                                    <button class="button is-small is-pulled-right" type="button" @click="addItem(item)">Toevoegen</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -37,13 +37,32 @@
                 <h3 class="has-text-centered">Bestelling</h3>
 
                 <table class="table is-fullwidth is-narrow">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Naam</th>
+                            <th>Prijs</th>
+                            <th>Aantal</th>
+                            <th>Opmerkingen</th>
+                        </tr>
+                    </thead>
+
                     <tbody>
                         <tr v-for="(item, index) in order.items" :key="item.id">
-                            <td>{{ index+1 }}.</td>
+                            <td>{{ index + 1 }}.</td>
                             <td>{{ item.name }}</td>
                             <td>{{ euro(item.amount * item.price) }}</td>
                             <td>
-                                <input class="is-pulled-right" type="number" min="0" v-model.number="item.amount" @change="updateItem(item)">
+                                <input class="input is-small" type="number" min="0" v-model.number="item.amount" @change="updateItem(item)">
+                            </td>
+                            <td>
+                                <input class="input is-small" type="text" v-model="item.notes">
+                            </td>
+                        </tr>
+
+                        <tr v-if="!order.items.length">
+                            <td colspan="5">
+                                <em>Nog geen items toegevoegd!</em>
                             </td>
                         </tr>
                     </tbody>
@@ -54,9 +73,10 @@
                 <div class="is-size-5 has-text-weight-bold is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center">
                     <p>Totaal:</p>
                     <p>{{ euro(total) }}</p>
-                    <div>
-                        <button class="is-block mb-1" type="button" @click="finishOrder">Afrekenen</button>
-                        <button class="is-block" type="button" @click="clearOrder">Verwijderen</button>
+
+                    <div class="buttons">
+                        <button class="button" type="button" @click="clearOrder">Verwijderen</button>
+                        <button class="button is-primary" type="button" @click="finishOrder">Afrekenen</button>
                     </div>
                 </div>
             </div>
@@ -65,14 +85,17 @@
 </template>
 
 <script>
+import shared from '../../../shared';
+
 export default {
     name: "Cashier",
+
     data() {
         return {
             categories: [],
             items: [],
             order: {
-                'items': [],
+                items: [],
             },
             response: {
                 visible: true,
@@ -82,6 +105,7 @@ export default {
             },
         }
     },
+
     mounted() {
         axios.get('/api/v1/menucategories')
             .then(res => res.data)
@@ -91,23 +115,20 @@ export default {
             .then(res => res.data)
             .then(res => this.items = res.data);
     },
+
+    created() {
+        this.euro = shared.euro.bind(this);
+    },
+
     computed: {
         total() {
             return _.sum(this.order.items.map(item => item.amount * item.price));
         }
     },
+
     methods: {
         category_item(category_id) {
             return this.items.filter(item => item.category.id === category_id);
-        },
-
-        euro(price) {
-            let f = new Intl.NumberFormat('nl-NL', {
-                style: 'currency',
-                currency: 'EUR',
-            });
-
-            return f.format(price);
         },
 
         addItem(item) {
@@ -118,7 +139,8 @@ export default {
             }
 
             let orderItem = item;
-            orderItem.amount = 1;
+            orderItem.amount = 1
+            orderItem.notes = '';
 
             this.order.items.push(orderItem);
         },
@@ -136,7 +158,7 @@ export default {
 
         clearOrder() {
             this.order = {
-                'items': [],
+                items: [],
             };
 
             this.response = {
@@ -155,6 +177,7 @@ export default {
                         this.response.visible = true;
                         this.response.success = 'Order created successfully!';
                         this.response.errors = [];
+
                         setTimeout(() => this.response.visible = false, 3000);
                     }
                 })
@@ -170,7 +193,6 @@ export default {
                                 this.response.errors.push(item);
                             }
                         }
-
                     } else if (error.request) {
                         console.log(error.request);
                     } else {
@@ -181,6 +203,6 @@ export default {
             // reset the form
             this.clearOrder();
         }
-    }
+    },
 }
 </script>

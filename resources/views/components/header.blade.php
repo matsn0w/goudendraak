@@ -6,13 +6,14 @@
     </div>
 
     <div class="column has-text-centered">
-        <h2 class="subtitle">Chinees Indische Specialiteiten</h2>
+        <h2 class="subtitle">{{ __('messages.header_subtitle') }}</h2>
         <h1 class="title">{{ config('app.name') }}</h1>
 
         <nav class="buttons has-addons is-justify-content-center">
-            <a href="{{ route('menu') }}" class="button">Menukaart</a>
-            <a href="{{ route('news') }}" class="button">Nieuws</a>
-            <a href="{{ route('contact') }}" class="button">Contact</a>
+            <a href="{{ route('menu') }}" class="button">{{ __('messages.header_menu_menu') }}</a>
+            <a href="{{ route('news') }}" class="button">{{ __('messages.news') }}</a>
+            <a href="{{ route('contact') }}" class="button">{{ __('messages.contact') }}</a>
+            <a href="{{ route('order') }}" class="button">{{ __('messages.order') }}</a>
         </nav>
     </div>
 

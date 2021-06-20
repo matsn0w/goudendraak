@@ -9,6 +9,11 @@ class CashierController extends Controller
         return view('cashier.index');
     }
 
+    public function payment()
+    {
+        return view('cashier.payment');
+    }
+
     public function dishes()
     {
         return view('cashier.dishes');
@@ -17,5 +22,10 @@ class CashierController extends Controller
     public function overview()
     {
         return view('cashier.overview');
+    }
+
+    public function orders()
+    {
+        return view('cashier.orders');
     }
 }

@@ -15,6 +15,7 @@ const webpack = require('webpack');
 mix.js('resources/js/app.js', 'public/dist/js')
     .sass('resources/css/app.scss', 'public/dist/css')
     .sass('resources/css/cashier.scss', 'public/dist/css')
+    .sass('resources/css/admin.scss', 'public/dist/css')
     .vue({
         version: 3
     })

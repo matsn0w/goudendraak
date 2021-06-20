@@ -1,5 +1,13 @@
 .outside-border {
-    box-shadow: 0px 0px 0px 10px $secondary;
+    box-shadow: 0px 0px 0px 10px $primary;
+}
+
+a {
+    color: $secondary;
+
+    &:hover {
+        color: $secondary;
+    }
 }
 
 a:not([class]):hover {
@@ -8,4 +16,10 @@ a:not([class]):hover {
 
 .underline {
     text-decoration: underline;
+}
+
+@for $i from 0 through 100 {
+    .w-#{$i} {
+        width: #{$i}#{'%'};
+    }
 }

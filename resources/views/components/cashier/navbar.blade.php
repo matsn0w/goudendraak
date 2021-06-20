@@ -1,18 +1,32 @@
 <nav class="level header">
     <div class="level-left">
-        <figure class="level-item">
-            <img class="logo" src="{{ asset('dist/img/goodpay.png') }}" alt="GoodPay">
-        </figure>
+        <a href="{{ route('cashier.index') }}">
+            <figure class="level-item">
+                <img class="logo" src="{{ asset('dist/img/goodpay.png') }}" alt="GoodPay">
+            </figure>
+        </a>
     </div>
 
     <div class="level-right">
-        <a href="{{ route('cashier.index') }}" class="level-item button">Kassa</a>
-        <a href="{{ route('cashier.dishes') }}" class="level-item button">Gerechten</a>
-        <a href="{{ route('cashier.overview') }}" class="level-item button">Verkoop Overzicht</a>
+        @roles(['admin', 'manager', 'cashier'])
+            <a href="{{ route('cashier.payment') }}" class="level-item button big">{{ __('messages.cashier') }}</a>
+        @endroles
+
+        @roles(['admin', 'manager', 'cashier', 'waiter'])
+            <a href="{{ route('cashier.dishes') }}" class="level-item button big">{{ __('messages.dishes') }}</a>
+        @endroles
+
+        @roles(['admin', 'manager', 'cashier', 'waiter'])
+            <a href="{{ route('cashier.orders') }}" class="level-item button big">{{ __('messages.orders') }}</a>
+        @endroles
+
+        @roles(['admin', 'manager'])
+            <a href="{{ route('cashier.overview') }}" class="level-item button big">{{ __('messages.sales_overview') }}</a>
+        @endroles
 
         <form action="{{ route('auth.logout') }}" method="post">
             @csrf
-            <button class="level-item button" type="submit">Log uit</a>
+            <button class="level-item button big" type="submit">{{ __('messages.log_out') }}</a>
         </form>
     </div>
 </nav>

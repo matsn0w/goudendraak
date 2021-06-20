@@ -23,9 +23,22 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'code' => ['required', 'integer'],
-            'password' => ['required'],
-        ];
+        switch ($this->method()) {
+            case 'PUT':
+                return [
+                    'code' => ['required', 'integer', "unique:users,code,$this->id"],
+                    'checked' => ['required', 'array', 'min:1'],
+                    'checked.*' => ['integer', 'exists:roles,id'],
+                    'password' => ['sometimes', 'min:1'],
+                ];
+
+            default:
+                return [
+                    'code' => ['required', 'integer', 'unique:users,code'],
+                    'checked' => ['required', 'array', 'min:1'],
+                    'checked.*' => ['required', 'integer'],
+                    'password' => ['required'],
+                ];
+        }
     }
 }

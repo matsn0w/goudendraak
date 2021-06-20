@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Models\MenuCategory;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class MenuItemResource extends JsonResource
@@ -10,7 +9,8 @@ class MenuItemResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function toArray($request)
@@ -23,8 +23,15 @@ class MenuItemResource extends JsonResource
             'category' => new MenuCategoryResource($this->category),
             'price' => $this->price,
             'description' => $this->description,
+            'spiciness' => $this->spiciness,
+            'allergens' => $this->whenLoaded('allergens', function () {
+                return AllergenResource::collection($this->allergens);
+            }),
             'amount' => $this->whenPivotLoaded('order_item', function () {
                 return $this->pivot->amount;
+            }),
+            'notes' => $this->whenPivotLoaded('order_item', function () {
+                return $this->pivot->notes;
             }),
         ];
     }

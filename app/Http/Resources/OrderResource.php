@@ -9,7 +9,8 @@ class OrderResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function toArray($request)
@@ -18,6 +19,7 @@ class OrderResource extends JsonResource
             'id' => $this->id,
             'date' => $this->created_at->format('d-m-Y'),
             'time' => $this->created_at->format('H:i'),
+            'table' => $this->table,
             'items' => MenuItemResource::collection($this->whenLoaded('items')),
             'financial' => [
                 'turnover' => $this->turnover,
